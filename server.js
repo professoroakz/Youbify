@@ -17,7 +17,7 @@ var port = process.env.PORT || 8080;
 
 // connect to our mongoDB database 
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://admin:12345@ds029541.mongolab.com:29541/youbify");
+mongoose.connect("mongodb://admin:12345@ds049631.mongolab.com:49631/songifyou");
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json
