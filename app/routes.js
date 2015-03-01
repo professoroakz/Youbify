@@ -120,7 +120,7 @@ module.exports = function(app) {
                 res.send(err);
 
             playlist.name = req.body.name;
-            playlist.url = req.body.url;
+            playlist.id = req.body.id;
 
             // if there is an error retrieving, send the error. 
             // nothing after res.send(err) will execute
@@ -150,7 +150,7 @@ module.exports = function(app) {
     app.post("/api/playlists", function(req, res){
         var playlist = new Playlist();
         playlist.name = req.body.name;
-        playlist.url = req.body.url;
+        playlist.id = req.body.id;
 
         playlist.save(function(err) {
             if(err)
