@@ -1,5 +1,5 @@
 angular.module('sampleApp', 
-	['ngRoute', 'appRoutes', 'MainCtrl', 'SongCtrl', 'SongService']); //, 'LoginCtrl', 'LoginService']);
+	['ngRoute', 'appRoutes', 'MainCtrl', 'SongCtrl', "LoginCtrl", 'SongService']); //, 'LoginCtrl', 'LoginService']);
 
 // Before login:
 // Login

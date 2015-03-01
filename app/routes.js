@@ -21,6 +21,18 @@ module.exports = function(app) {
     });
 
     // route to handle creating goes here (app.post)
+    app.post('/api/songs', function(req, res){
+        var song = new Song();
+        song.name = req.body.name;
+        song.url = req.body.url;
+
+        song.save(function(err) {
+            if(err)
+                res.send(err);
+
+            res.json({message: "song created"});
+        });
+    });
     // route to handle delete goes here (app.delete)
 
     // frontend routes =========================================================
