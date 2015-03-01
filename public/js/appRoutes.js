@@ -27,7 +27,8 @@ $routeProvider
     .when('/profile', {
         templateUrl: 'views/profile.html',
         controller: 'ProfileController'
-    });
+    })
+    .otherwise('/');
 
 $locationProvider.html5Mode(true);
 }]);
