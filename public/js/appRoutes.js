@@ -22,7 +22,7 @@ $routeProvider
 
     .when('/playlists', {
         templateUrl: 'views/playlists.html',
-        controller: 'PlaylistsController'
+        controller: 'PlaylistController'
     });
 
 
