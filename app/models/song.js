@@ -4,8 +4,8 @@ var Schema = mongoose.Schema;
 
 //define schema
 var songSchema = new Schema({
-	name : String,
-	url : String
+	name : { type: String, required: true },
+	url : { type: String, required: true }
 });
 
 // define our model
