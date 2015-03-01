@@ -1,3 +1,7 @@
+/*
+*   Handle the HTTP requests from the Playlist page
+*/
+
 angular.module('PlaylistService', []).factory('Playlist', ['$http', function($http) {
 
     return {

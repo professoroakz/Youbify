@@ -1,3 +1,7 @@
+/*
+*   Handle the HTTP requests from the Song page
+*/
+
 angular.module('SongService', []).factory('Song', ['$http', function($http) {
 
     return {

@@ -1,3 +1,7 @@
+/*
+*	Model for login
+*/
+
 // grab the mongoose module
 var mongoose = require('mongoose');
 

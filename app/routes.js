@@ -1,8 +1,16 @@
-// grab the nerd model we just created
+/*
+*   ROUTES:
+*   Determine how the application responds to a client request to a
+*   particular endpoint, URI or HTTP request method.
+*/
+
+// Grab the models we create
 var Song = require('./models/song');
 var Playlist = require('./models/playlist');
+var Profile = require('./models/profile');
 
 module.exports = function(app) {
+
     // server routes ===========================================================
     // handle things like api calls
     // authentication routes
@@ -86,16 +94,15 @@ module.exports = function(app) {
 // PLAYLISTS ===================================================================================
 
 
-    // route to get all songs
+    // route to get all playlists
     app.get('/api/playlists', function(req, res) {
-        // use mongoose to get all songs in the database
+        // use mongoose to get all playlists in the database
         Playlist.find(function(err, playlists) {
 
             // if there is an error retrieving, send the error. 
             // nothing after res.send(err) will execute
             if (err)
                 res.send(err);
-
             res.json(playlists); // return all playlists in JSON format
         });
     });
@@ -166,5 +173,89 @@ module.exports = function(app) {
     app.get('*', function(req, res) {
         res.sendfile('./public/views/index.html'); // load our public/index.html file
     });
+// PROFILE =============================================================================
+
+
+
+    // route to get all profiles
+    app.get('/api/profile', function(req, res) {
+        // use mongoose to get all profiles in the database
+        Profile.find(function(err, profiles) {
+
+            // if there is an error retrieving, send the error. 
+            // nothing after res.send(err) will execute
+            if (err)
+                res.send(err);
+            res.json(profiles); // return all profiles in JSON format
+        });
+    });
+
+    // route to get specific profile
+    app.get('/api/profile/:profile_id', function(req, res) {
+        Profile.findById(req.params.profile_id, function(err, profile) {
+
+            // if there is an error retrieving, send the error. 
+            // nothing after res.send(err) will execute
+            if (err)
+                res.send(err);
+
+            res.json(profile); // return all profiles in JSON format
+        });
+    });
+
+    // route for update
+    app.put('/api/profile/:profile_id', function(req, res) {
+        Profile.findById(req.params.profile_id, function(err, profile) {
+            if(err)
+                res.send(err);
+
+            profile.name = req.body.name;
+            profile.id = req.body.id;
+
+            // if there is an error retrieving, send the error. 
+            // nothing after res.send(err) will execute
+            profile.save(function(err) {
+                if (err)
+                    res.send(err);
+
+            res.json(profile); // return all profiles in JSON format
+            });
+        });
+    });
+
+    // route for delete
+    app.delete('/api/profile/:profile_id', function(req, res) {
+        // use mongoose to get all profiles in the database
+        Profile.remove({_id: req.params.profile_id
+        }, function(err, profile) {
+            if (err)
+                res.send(err);
+
+            res.json({message: "succesfully deleted"}); // return all profiles in JSON format
+
+        });
+    });
+
+    // route to handle creating goes here (app.post)
+    app.post("/api/profile", function(req, res){
+        var profile = new Profile();
+        profile.name = req.body.name;
+        profile.id = req.body.id;
+
+        profile.save(function(err) {
+            if(err)
+                res.send(err);
+
+            res.json({message: "profile created"});
+        });
+    });
+
+
+    // frontend routes =========================================================
+    // route to handle all angular requests
+    app.get('*', function(req, res) {
+        res.sendfile('./public/views/index.html'); // load our public/index.html file
+    });
+
 
 };

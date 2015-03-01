@@ -1,3 +1,7 @@
+/*
+*	Model for playlist
+*/
+
 // grab the mongoose module
 var mongoose = require('mongoose');
 // create a new schema
