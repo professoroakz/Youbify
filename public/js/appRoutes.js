@@ -14,11 +14,11 @@ $routeProvider
         controller: 'SongController'
     })
 
+    // 
     .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginController'
     });
 
-    $locationProvider.html5Mode(true);
-
+$locationProvider.html5Mode(true);
 }]);
