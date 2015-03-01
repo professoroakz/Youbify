@@ -6,7 +6,7 @@ module.exports = function(app) {
     // handle things like api calls
     // authentication routes
 
-    // sample api route
+    // route to get all songs
     app.get('/api/songs', function(req, res) {
         // use mongoose to get all songs in the database
         Song.find(function(err, songs) {
@@ -20,8 +20,8 @@ module.exports = function(app) {
         });
     });
 
+    // route to get specific song
     app.get('/api/songs/:song_id', function(req, res) {
-        // use mongoose to get all songs in the database
         Song.findById(req.params.song_id, function(err, song) {
 
             // if there is an error retrieving, send the error. 
@@ -33,8 +33,8 @@ module.exports = function(app) {
         });
     });
 
+    // route for update
     app.put('/api/songs/:song_id', function(req, res) {
-        // use mongoose to get all songs in the database
         Song.findById(req.params.song_id, function(err, song) {
             if(err)
                 res.send(err);
@@ -53,6 +53,7 @@ module.exports = function(app) {
         });
     });
 
+    // route for delete
     app.delete('/api/songs/:song_id', function(req, res) {
         // use mongoose to get all songs in the database
         Song.remove({_id: req.params.song_id
@@ -78,8 +79,6 @@ module.exports = function(app) {
             res.json({message: "song created"});
         });
     });
-    // route to handle delete goes here (app.delete)
-
     // frontend routes =========================================================
     // route to handle all angular requests
     app.get('*', function(req, res) {
