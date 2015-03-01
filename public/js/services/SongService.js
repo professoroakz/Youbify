@@ -7,12 +7,12 @@ angular.module('SongService', []).factory('Song', ['$http', function($http) {
         },
 
         // these will work when more API routes are defined on the Node side of things
-        // call to POST and create a new nerd
+        // call to POST and create a new song
         create : function(songData) {
             return $http.post('/api/songs', songData);
         },
 
-        // call to DELETE a nerd
+        // call to DELETE a song
         delete : function(id) {
             return $http.delete('/api/songs/' + id);
         }

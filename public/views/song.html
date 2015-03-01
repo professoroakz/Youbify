@@ -1,5 +1,13 @@
 <div class="jumbotron text-center">
-    <h1>List of all songs!</h1>
-
-    <p>{{ tagline }}</p>
+	<p>{{ tagline }}</p>
+	<table class='table table-bordered'>
+		<caption>LIST OF ALL SONGS</caption>
+		<thead>
+			<!-- your table head -->
+		</thead>
+		<tr ng-repeat="x in songs">
+			<td>{{x.name}} </td> 
+			<td>{{x.url}} </td> 
+		</tr>
+	</table> 
 </div>
