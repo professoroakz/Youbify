@@ -18,7 +18,13 @@ $routeProvider
     .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginController'
+    })
+
+    .when('/playlists', {
+        templateUrl: 'views/playlists.html',
+        controller: 'PlaylistsController'
     });
+
 
 $locationProvider.html5Mode(true);
 }]);
