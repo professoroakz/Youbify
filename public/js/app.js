@@ -1,5 +1,5 @@
 angular.module('sampleApp', 
-	['ngRoute', 'appRoutes', 'MainCtrl', 'NerdCtrl', 'NerdService']); //, 'LoginCtrl', 'LoginService']);
+	['ngRoute', 'appRoutes', 'MainCtrl', 'NerdCtrl', 'NerdService' 'LoginCtrl', 'LoginService']);
 
 // Before login:
 // Login

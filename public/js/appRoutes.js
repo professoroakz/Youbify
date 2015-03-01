@@ -15,11 +15,11 @@ $routeProvider
     });
 
     // login page.. not working yet :<, uncomment -> everything working
-/*    .when('/login', {
+    .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginController'
     });
-*/
+
 $locationProvider.html5Mode(true);
 
 }]);
