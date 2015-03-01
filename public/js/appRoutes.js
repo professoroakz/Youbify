@@ -14,7 +14,6 @@ $routeProvider
         controller: 'SongController'
     })
 
-    // 
     .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginController'
@@ -22,7 +21,7 @@ $routeProvider
 
     .when('/playlists', {
         templateUrl: 'views/playlists.html',
-        controller: 'PlaylistsController'
+        controller: 'PlaylistController'
     });
 
 

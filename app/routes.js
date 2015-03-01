@@ -1,11 +1,14 @@
 // grab the nerd model we just created
 var Song = require('./models/song');
+var Playlist = require('./models/playlist');
 
 module.exports = function(app) {
     // server routes ===========================================================
     // handle things like api calls
     // authentication routes
 
+
+// SONGS =======================================================================
     // route to get all songs
     app.get('/api/songs', function(req, res) {
         // use mongoose to get all songs in the database
@@ -79,6 +82,85 @@ module.exports = function(app) {
             res.json({message: "song created"});
         });
     });
+
+// PLAYLISTS ===================================================================================
+
+
+    // route to get all songs
+    app.get('/api/playlists', function(req, res) {
+        // use mongoose to get all songs in the database
+        Playlist.find(function(err, playlists) {
+
+            // if there is an error retrieving, send the error. 
+            // nothing after res.send(err) will execute
+            if (err)
+                res.send(err);
+
+            res.json(playlists); // return all playlists in JSON format
+        });
+    });
+
+    // route to get specific playlist
+    app.get('/api/playlists/:playlist_id', function(req, res) {
+        Playlist.findById(req.params.playlist_id, function(err, playlist) {
+
+            // if there is an error retrieving, send the error. 
+            // nothing after res.send(err) will execute
+            if (err)
+                res.send(err);
+
+            res.json(playlist); // return all playlists in JSON format
+        });
+    });
+
+    // route for update
+    app.put('/api/playlists/:playlist_id', function(req, res) {
+        Playlist.findById(req.params.playlist_id, function(err, playlist) {
+            if(err)
+                res.send(err);
+
+            playlist.name = req.body.name;
+            playlist.url = req.body.url;
+
+            // if there is an error retrieving, send the error. 
+            // nothing after res.send(err) will execute
+            playlist.save(function(err) {
+                if (err)
+                    res.send(err);
+
+            res.json(playlist); // return all playlists in JSON format
+            });
+        });
+    });
+
+    // route for delete
+    app.delete('/api/playlists/:playlist_id', function(req, res) {
+        // use mongoose to get all playlists in the database
+        Playlist.remove({_id: req.params.playlist_id
+        }, function(err, playlist) {
+            if (err)
+                res.send(err);
+
+            res.json({message: "succesfully deleted"}); // return all playlists in JSON format
+
+        });
+    });
+
+    // route to handle creating goes here (app.post)
+    app.post("/api/playlists", function(req, res){
+        var playlist = new Playlist();
+        playlist.name = req.body.name;
+        playlist.url = req.body.url;
+
+        playlist.save(function(err) {
+            if(err)
+                res.send(err);
+
+            res.json({message: "playlist created"});
+        });
+    });
+
+
     // frontend routes =========================================================
     // route to handle all angular requests
     app.get('*', function(req, res) {

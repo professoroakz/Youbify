@@ -2,4 +2,15 @@
     <h1>List of all playslists</h1>
 
     <p>{{ tagline }}</p>
+
+	<table class='table table-bordered'>
+		<caption>LIST OF ALL PLAYLISTS</caption>
+		<thead>
+			<!-- your table head -->
+		</thead>
+		<tr ng-repeat="x in playlists">
+			<td>{{x.name}} </td>
+		</tr>
+	</table> 
+</div>
 </div>

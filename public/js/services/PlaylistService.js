@@ -1,7 +1,7 @@
 angular.module('PlaylistService', []).factory('Playlist', ['$http', function($http) {
 
     return {
-        // call to get all songs
+        // call to get all playlists
         get : function() {
             return $http.get('/api/playlists');
         },
@@ -12,7 +12,7 @@ angular.module('PlaylistService', []).factory('Playlist', ['$http', function($ht
             return $http.post('/api/playlists', playlistData);
         },
 
-        // call to DELETE a nerd
+        // call to DELETE a playlist
         delete : function(id) {
             return $http.delete('/api/playlists/' + id);
         }
