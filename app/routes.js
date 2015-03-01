@@ -1,5 +1,5 @@
 // grab the nerd model we just created
-var Nerd = require('./models/nerd');
+var Song = require('./models/song');
 
 module.exports = function(app) {
     // server routes ===========================================================
@@ -7,20 +7,32 @@ module.exports = function(app) {
     // authentication routes
 
     // sample api route
-    app.get('/api/nerds', function(req, res) {
-        // use mongoose to get all nerds in the database
-        Nerd.find(function(err, nerds) {
+    app.get('/api/songs', function(req, res) {
+        // use mongoose to get all songs in the database
+        Song.find(function(err, songs) {
 
             // if there is an error retrieving, send the error. 
             // nothing after res.send(err) will execute
             if (err)
                 res.send(err);
 
-            res.json(nerds); // return all nerds in JSON format
+            res.json(songs); // return all songs in JSON format
         });
     });
 
     // route to handle creating goes here (app.post)
+    app.post('/api/songs', function(req, res){
+        var song = new Song();
+        song.name = req.body.name;
+        song.url = req.body.url;
+
+        song.save(function(err) {
+            if(err)
+                res.send(err);
+
+            res.json({message: "song created"});
+        });
+    });
     // route to handle delete goes here (app.delete)
 
     // frontend routes =========================================================

@@ -9,17 +9,16 @@ $routeProvider
     })
 
     // nerds page that will use the NerdController
-    .when('/nerds', {
-        templateUrl: 'views/nerd.html',
-        controller: 'NerdController'
-    });
+    .when('/songs', {
+        templateUrl: 'views/song.html',
+        controller: 'SongController'
+    })
 
-    // login page.. not working yet :<, uncomment -> everything working
+    // 
     .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginController'
     });
 
 $locationProvider.html5Mode(true);
-
 }]);
