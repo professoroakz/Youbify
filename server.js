@@ -1,23 +1,18 @@
 // server.js
 
-// modules =================================================
-var express        = require('express');
-var app            = express();
-var bodyParser     = require('body-parser');
-var methodOverride = require('method-override');
+// set up =================================================
+var express        	= require('express');
+var app            	= express();
+var bodyParser     	= require('body-parser');
+var methodOverride 	= require('method-override');
+var mongoose 		= require("mongoose");
+var port 			= process.env.PORT || 8080;
+var db 				= require('./config/db');
 
 // configuration ===========================================
 
-// config files
-
-var db = require('./config/db');
-
-// set the port
-var port = process.env.PORT || 8080;
-
 // connect to our mongoDB database 
-var mongoose = require("mongoose");
-mongoose.connect("mongodb://admin:12345@ds049631.mongolab.com:49631/songifyou");
+mongoose.connect(db.url);
 
 // include models
 var Song = require("./app/models/song");
