@@ -1,13 +1,15 @@
 <div class="jumbotron text-center">
 	<p>{{ tagline }}</p>
 	<table class='table table-bordered'>
-		<caption>LIST OF ALL SONGS</caption>
+		<caption>LIST OF ALL SONGS <br> Artist hej lol</caption>
 		<thead>{{ tagline }}</thead>
 		<tr ng-repeat="x in songs">
-			<td>{{x.name}}</td> 
+			<td>{{x.artist}}</td>
+			<td>{{x.title}}</td>
+			<td>{{x.genre}}</td> 
 			<td>{{x.url}}</td>
 			<td>
-			<iframe width="560" height="315" ng-src="http://www.youtube.com/embed/2Ai3m2P5WKg" frameborder="0" allowfullscreen></iframe>
+			<iframe width="460" height="215" ng-src="http://www.youtube.com/embed/2Ai3m2P5WKg" frameborder="0" allowfullscreen></iframe>
 			</td>
 		</tr>
 	</table> 

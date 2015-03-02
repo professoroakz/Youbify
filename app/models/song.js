@@ -8,7 +8,9 @@ var Schema = mongoose.Schema;
 
 //define schema
 var songSchema = new Schema({
-	name : { type: String, required: true },
+	artist : { type: String, required: true },
+	title : {type: String, required: true},
+	genre : {type: String, required: true},
 	url : { type: String, required: true }
 });
 

@@ -50,7 +50,10 @@ module.exports = function(app) {
             if(err)
                 res.send(err);
 
-            song.name = req.body.name;
+            song.artist = req.body.artist;
+            song.title = req.body.title;
+            song.genre = req.body.genre;
+            song.date = req.body.date;
             song.url = req.body.url;
 
             // if there is an error retrieving, send the error. 
@@ -80,7 +83,10 @@ module.exports = function(app) {
     // route to handle creating goes here (app.post)
     app.post("/api/songs", function(req, res){
         var song = new Song();
-        song.name = req.body.name;
+        song.artist = req.body.artist;
+        song.title = req.body.title;
+        song.genre = req.body.genre;
+        song.date = req.body.date;
         song.url = req.body.url;
 
         song.save(function(err) {
