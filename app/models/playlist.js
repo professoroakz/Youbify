@@ -9,9 +9,9 @@ var Schema = mongoose.Schema;
 
 // define the schema
 var playlistSchema = new Schema({
-	name : { type: String, required: true },
-	id 	 : { type: Number, required: true}
-	// Songschema here? Need songSchema objects
+	name 	: { type: String, required: true },
+	id 	 	: { type: Number, required: true},
+	playlistsongs 	: [{type: Schema.ObjectId, ref: 'Song'}]
 });
 
 // define our model
