@@ -3,7 +3,7 @@
 */
 
 angular.module('sampleApp', 
-	['ngRoute', 'ngFacebook' 'appRoutes', 
+	['ngRoute',  'appRoutes', 
 	'MainCtrl', 
 	'SongCtrl', 'SongService', 
 	'LoginCtrl', 
