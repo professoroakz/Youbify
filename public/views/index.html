@@ -21,11 +21,13 @@
     <script src="js/controllers/SongCtrl.js"></script>
     <script src="js/controllers/LoginCtrl.js"></script>
     <script src="js/controllers/PlaylistCtrl.js"></script>
+    <script src="js/controllers/ProfileCtrl.js"></script>
 
     <!-- SERVICES -->
     <script src="js/services/SongService.js"></script>
     <script src="js/services/LoginService.js"></script>
     <script src="js/services/PlaylistService.js"></script>
+    <script src="js/services/ProfileService.js"></script>
     
     
     <!-- APP SPECIFIC -->
@@ -41,18 +43,24 @@
             <a class="navbar-brand" href="/">Youbify</a>
         </div>
 
+        <ul class="nav navbar-nav">
+            <li><a href="/login">Login</a></li>
+        </ul>
+
+        
+        <ul class="nav navbar-nav">
+            <li><a href="/profile">Profile</a></li>
+        </ul>
+
         <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
         <ul class="nav navbar-nav">
             <li><a href="/songs">Songs</a></li>
         </ul>
 
         <ul class="nav navbar-nav">
-            <li><a href="/login">Login</a></li>
-        </ul>
-
-        <ul class="nav navbar-nav">
             <li><a href="/playlists">Playlists</a></li>
         </ul>
+
     </nav>
     <!-- ANGULAR DYNAMIC CONTENT -->
     <div ng-view></div>

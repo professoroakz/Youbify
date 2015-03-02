@@ -1,4 +1,5 @@
 <div class="jumbotron text-center">
+	<p>{{ tagline }}</p>
 	<table class='table table-bordered'>
 		<caption>LIST OF ALL SONGS</caption>
 		<thead>{{ tagline }}</thead>
@@ -6,6 +7,10 @@
 			<td>{{x.name}}</td> 
 			<td>{{x.url}}</td>
 			<td><iframe width="560" height="315" src={{x.url}} frameborder="0" allowfullscreen></iframe></td>
+=======
+			<td>
+			<iframe width="560" height="315" ng-src="http://www.youtube.com/embed/2Ai3m2P5WKg" frameborder="0" allowfullscreen></iframe>
+			</td>
 		</tr>
 	</table> 
 </div>

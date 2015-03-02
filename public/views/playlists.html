@@ -4,13 +4,12 @@
     <p>{{ tagline }}</p>
 
 	<table class='table table-bordered'>
-		<caption>LIST OF ALL PLAYLISTS</caption>
+		<caption>PLAYLIST NAME</caption>
 		<thead>
-			<!-- your table head -->
 		</thead>
 		<tr ng-repeat="x in playlists">
 			<td>{{x.name}} </td>
-			<td>{{x.id}} </td>
+		<!-- Don't show this:	<td>{{x.id}} </td> -->
 		</tr>
 	</table> 
 </div>

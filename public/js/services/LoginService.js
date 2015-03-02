@@ -1,3 +1,7 @@
+/*
+*   Handle the HTTP requests from the Login page
+*/
+
 angular.module('LoginService', []).factory('Login', ['$http', function($http) {
 
     return {

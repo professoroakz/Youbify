@@ -21,6 +21,8 @@ mongoose.connect("mongodb://admin:12345@ds049631.mongolab.com:49631/songifyou");
 
 // include models
 var Song = require("./app/models/song");
+var Playlist = require('./app/models/playlist');
+var Profile = require('./app/models/profile');
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json

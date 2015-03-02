@@ -22,8 +22,13 @@ $routeProvider
     .when('/playlists', {
         templateUrl: 'views/playlists.html',
         controller: 'PlaylistController'
-    });
+    })
 
+    .when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileController'
+    })
+    .otherwise('/');
 
 $locationProvider.html5Mode(true);
 }]);
