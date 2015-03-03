@@ -142,22 +142,16 @@ module.exports = function(app, passport) {
 
     // route to get specific playlist
     app.get('/api/playlists/:playlist_id', function(req, res, next) {
-        Playlist.findById(req.params.playlist_id, function(err, playlist) {
-
-            // if there is an error retrieving, send the error. 
-            // nothing after res.send(err) will execute
-            if (err)
-                res.send(err);
-
-            Song.
-            find({ artist: 'AlunaGeorge' }).
-            populate("playlistsongs").
-            exec(function(err, nws){
-                if(err) {res.writeHead(500, err.message)}
-                res.send(nws);
-            });
-
-            res.json(playlist); // return all playlists in JSON format
+        Playlist.findById(req.params.playlist_id)
+        .populate('playlistsongs')
+        .exec(function (err, playlist) {
+          if(err) {
+            res.err(500);
+            return;
+          }
+          playlist.name = req.body.name;
+          playlist.id = req.body.id;
+          res.json(playlist);
         });
     });
 
@@ -170,15 +164,18 @@ module.exports = function(app, passport) {
             playlist.name = req.body.name;
             playlist.id = req.body.id;
 
-
-            Song.
-            find({ artist: 'AlunaGeorge' }).
-            populate("playlistsongs").
-            exec(function(err, nws){
-                if(err) {res.writeHead(500, err.message)}
-                res.send(nws);
-            });
-
+        Playlist.findById(req.params.playlist_id)
+        .populate('playlistsongs')
+        .exec(function (err, playlist) {
+          if(err) {
+            res.err(500);
+            return;
+          }
+          
+          playlist.name = req.body.name;
+          playlist.id = req.body.id;
+          res.json(playlist);
+        });
             // if there is an error retrieving, send the error. 
             // nothing after res.send(err) will execute
             playlist.save(function(err) {
@@ -209,13 +206,14 @@ module.exports = function(app, passport) {
         playlist.name = req.body.name;
         playlist.id = req.body.id;
 
-        playlist.playlistsongs = Song.
-            find({ artist: 'AlunaGeorge' }).
-            populate("playlistsongs").
-            exec(function(err, nws){
-                if(err) {res.writeHead(500, err.message)}
-                res.send(nws);
-            });
+        Playlist.findById(req.params.playlist_id)
+        .populate('playlistsongs')
+        .exec(function (err, playlist) {
+          if(err) {
+            res.err(500);
+            return;
+          }
+        });
 
         playlist.save(function(err) {
             if(err)

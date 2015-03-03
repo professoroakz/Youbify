@@ -8,4 +8,5 @@ angular.module('SongCtrl', []).controller('SongController', function($scope, $ht
                 .error(function(data) {
                         console.log('Error: ' + data);
                 });
+
 });
