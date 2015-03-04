@@ -14,25 +14,24 @@
 
 <form class="form-horizontal">
   <div class="form-group">
-    <label for="inputPlaylistName" class="col-sm-2 control-label">Genre</label>
-    <div class="col-sm-10" id="inputArtist">
-      <input type="artist" class="form-control" id="inputArtist" placeholder="For example 'House', 'Pop', 'R&B'...">
+    <label for="inputPlaylistGenre" class="col-sm-2 control-label">Genre</label>
+    <div class="col-sm-10" id="inputPlaylistGenre">
+      <input type="genre" class="form-control" id="inputPlaylistGenre" placeholder="For example 'House', 'Pop', 'R&B'...">
     </div>
   </div>
 </form>
 
 <form class="form-horizontal">
   <div class="form-group">
-    <label for="inputPlaylistName" class="col-sm-2 control-label">Mood</label>
-    <div class="col-sm-10" id="inputArtist">
-      <input type="artist" class="form-control" id="inputArtist" placeholder="For example 'Happy', 'Chill', 'Hype'...">
+    <label for="inputPlaylistMood" class="col-sm-2 control-label">Mood</label>
+    <div class="col-sm-10" id="inputPlaylistMood">
+      <input type="mood" class="form-control" id="inputPlaylistMood" placeholder="For example 'Happy', 'Chill', 'Hype'...">
     </div>
   </div>
 </form>
 
 	</br>
 	<p> <button type="button" class="btn btn-primary">Create playlist</button></p>
-
 
 </div>
 
@@ -43,12 +42,16 @@
     <p>{{ tagline }}</p>
 
 	<table class='table table-bordered'>
-		<caption>PLAYLIST NAME</caption>
+		<caption>PLAYLISTS</caption>
 		<thead>
 		</thead>
+		<td>Name</td>
+		<td>Genre</td>
+		<td>Mood</td>
 		<tr ng-repeat="x in playlists">
 			<td><a href="/playlists/{{x._id}}">{{x.name}}</a></td>
-		<!-- Don't show this:	<td>{{x.id}} </td> -->
+			<td>{{x.genre}}</td>
+			<td>{{x.mood}}</td>
 		</tr>
 	</table> 
 </div>
