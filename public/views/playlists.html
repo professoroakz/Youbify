@@ -8,7 +8,7 @@
 		<thead>
 		</thead>
 		<tr ng-repeat="x in playlists">
-			<td>{{x.name}} </td>
+			<td><a href="/playlists/{{x._id}}">{{x.name}}</a></td>
 		<!-- Don't show this:	<td>{{x.id}} </td> -->
 		</tr>
 	</table> 

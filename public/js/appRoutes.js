@@ -24,6 +24,11 @@ $routeProvider
         controller: 'PlaylistController'
     })
 
+    .when('/playlists/:id', {
+        templateUrl: 'views/playlistdetail.html',
+        controller: 'PlaylistDetailController'
+    })
+
     .when('/profile', {
         templateUrl: 'views/profile.html',
         controller: 'ProfileController'

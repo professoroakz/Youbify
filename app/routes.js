@@ -156,35 +156,51 @@ module.exports = function(app, passport) {
     });
 
     // route for update
-    app.put('/api/playlists/:playlist_id', function(req, res) {
+    app.patch('/api/playlists/:playlist_id', function(req, res) {
         Playlist.findById(req.params.playlist_id, function(err, playlist) {
-            if(err)
-                res.send(err);
+            if (req.body.playlistsongs) {
+                playlist.playlistsongs = req.body.playlistsongs;
+            }
+            if (req.body.name) {
+                playlist.name = req.body.name;
+            }
 
-            playlist.name = req.body.name;
-            playlist.id = req.body.id;
-
-        Playlist.findById(req.params.playlist_id)
-        .populate('playlistsongs')
-        .exec(function (err, playlist) {
-          if(err) {
-            res.err(500);
-            return;
-          }
-          
-          playlist.name = req.body.name;
-          playlist.id = req.body.id;
-          res.json(playlist);
-        });
-            // if there is an error retrieving, send the error. 
-            // nothing after res.send(err) will execute
             playlist.save(function(err) {
-                if (err)
-                    res.send(err);
-
-            res.json(playlist); // return all playlists in JSON format
+                if(err) {
+                    res.err(500);
+                    return;
+                }
+                res.json(playlist);
             });
-        });
+        })
+        // Playlist.findById(req.params.playlist_id, function(err, playlist) {
+        //     if(err)
+        //         res.send(err);
+
+        //     playlist.name = req.body.name;
+        //     playlist.id = req.body.id;
+
+        // Playlist.findById(req.params.playlist_id)
+        // .populate('playlistsongs')
+        // .exec(function (err, playlist) {
+        //   if(err) {
+        //     res.err(500);
+        //     return;
+        //   }
+          
+        //   playlist.name = req.body.name;
+        //   playlist.id = req.body.id;
+        //   res.json(playlist);
+        // });
+        //     // if there is an error retrieving, send the error. 
+        //     // nothing after res.send(err) will execute
+        //     playlist.save(function(err) {
+        //         if (err)
+        //             res.send(err);
+
+        //     res.json(playlist); // return all playlists in JSON format
+        //     });
+        // });
     });
 
     // route for delete

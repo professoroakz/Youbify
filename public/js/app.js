@@ -3,9 +3,14 @@
 */
 
 angular.module('sampleApp', 
-	['ngRoute', 'appRoutes', 
+	['ngRoute', 
+	'appRoutes', 
 	'MainCtrl', 
-	'SongCtrl', 'SongService', 
+	'SongCtrl', 
+	'SongService', 
 	'LoginCtrl', 
-	'PlaylistCtrl', 'PlaylistService',
-	'ProfileCtrl', 'ProfileService']);
+	'PlaylistCtrl',
+	'PlaylistService',
+	'PlaylistDetailCtrl',
+	'ProfileCtrl', 
+	'ProfileService']);
