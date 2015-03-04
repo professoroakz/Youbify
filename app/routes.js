@@ -119,7 +119,6 @@ module.exports = function(app, passport) {
         song.save(function(err) {
             if(err)
                 res.send(err);
-
             res.json({message: "song created"});
         });
     });
