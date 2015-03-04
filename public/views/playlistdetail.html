@@ -5,9 +5,14 @@
 
 	<table class='table table-bordered'>
 		<caption>SONGS</caption>
+		<td>Artist</td>
+		<td>Title</td>
+		<td>Genre</td>
 		<tbody>
 			<tr ng-repeat="song in playlist.playlistsongs">
+				<td>{{song.artist}}</td>
 				<td>{{song.title}}</td>
+				<td>{{song.genre}}</td>
 			</tr>
 		</tbody>
 	</table> 

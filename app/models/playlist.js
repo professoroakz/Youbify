@@ -9,8 +9,10 @@ var Schema = mongoose.Schema;
 
 // define the schema
 var playlistSchema = new Schema({
-	name 	: { type: String, required: true },
-	id 	 	: { type: Number, required: true},
+	name 			: { type: String, required: true },
+	genre 			: { type: String, required: true },
+	mood 			: { type: String, required: true },
+	id 	 			: { type: Number, required: true },
 	playlistsongs 	: [{type: Schema.ObjectId, ref: 'Song'}]
 });
 
