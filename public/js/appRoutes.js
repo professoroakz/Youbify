@@ -13,6 +13,11 @@ $routeProvider
         controller: 'SongController'
     })
 
+    .when('/songs/:id', {
+        templateUrl: 'views/songdetail.html',
+        controller: 'SongDetailController'
+    })
+
     .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginController'
