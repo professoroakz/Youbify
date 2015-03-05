@@ -16,4 +16,5 @@ angular.module('Youbify',
 	'PlaylistDetailCtrl',
 	'ProfileCtrl', 
 	'ProfileService',
-	'404Ctrl']);
+	'404Ctrl',
+	'satellizer']);
