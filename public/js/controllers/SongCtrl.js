@@ -1,8 +1,10 @@
 angular.module('SongCtrl', []).controller('SongController', function($scope, $http, $sce) {
 
     $scope.tagline = 'List of songs';
-    $scope.addSongTagline = 'Add new songs!';
-    $scope.whatPlaylist = 'Do you want to add the song to a playlist?';
+    $scope.addSongHeader = 'Add new songs';
+    $scope.addSongTagline = 'Add a new song to your library.';
+    $scope.addSongToPlaylist = "Add song to playlist"
+    $scope.whatPlaylist = 'Do you want to add a song to a playlist?';
     $scope.songAdded = '';
     $http.get('/api/songs')
                 .success(function(data) {

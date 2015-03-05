@@ -1,5 +1,6 @@
 <div class="jumbotron text-center">
-	<h1>{{addSongTagline}}</h1>
+	<h1>{{addSongHeader}}</h1>
+	<p>{{addSongTagline}}</p>
 	</br>
 <!-- Input fields for playlist -->
 <form name="songForm" ng-submit="addsong()">
@@ -35,9 +36,30 @@
       <input type="url" class="form-control" ng-model="inputYoutubeUrl" placeholder="/embed/ for MAX result, https://www.youtube.com/embed/5NV6Rdv1a3I">
     </div>
   </div>
+
+<!-- Ridiculously many newlines for marginal -->
+</br> </br> </br> </br> </br> </br> </br> </br>
+
+<input type="submit" id="submit" class="btn btn-primary" value="Add song to library" />
+<p>{{songAdded}}</p>
+</br>
+<li class="divider"></li>
+
+</form>
 	<!-- Playlist stuff -->
+	<h1>{{addSongToPlaylist}}</h1>
 	<p>{{whatPlaylist}}</p>
 	<div class="dropdown">
+		<button class="btn btn-default dropdown-toggle" type="button" id="chooseSongDropdown" data-toggle="dropdown" aria-expanded="true">
+			Choose song
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu" aria-labelledby="chooseSongDropdown">
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+		</ul>
 		<button class="btn btn-default dropdown-toggle" type="button" id="choosePlaylistDropdown" data-toggle="dropdown" aria-expanded="true">
 			Choose playlist
 			<span class="caret"></span>
@@ -49,13 +71,12 @@
 			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
 		</ul>
 	</div>
-	</br>
-
-<input type="submit" id="submit" class="btn btn-primary" value="Add song" />
+</br>
+<input type="submit" id="submit" class="btn btn-primary" value="Add song to playlist" />
 <p>{{songAdded}}</p>
-</form>
 
-</div>
+	</div>
+
 
 
 <div class="jumbotron text-center">
@@ -74,7 +95,7 @@
 			<td>{{x.title}}</td>
 			<td>{{x.genre}}</td> 
 			<td>{{x.url}}</td>
-			<td><iframe width="560" height="315" ng-src="http://www.youtube.com/embed/2Ai3m2P5WKg" frameborder="0" allowfullscreen></iframe></td>
+			<!-- <td><iframe width="560" height="315" ng-src="http://www.youtube.com/embed/2Ai3m2P5WKg" frameborder="0" allowfullscreen></iframe></td> -->
 			
 		</tr>
 	</table> 
