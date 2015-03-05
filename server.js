@@ -5,7 +5,6 @@ var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
-var passport = require('passport');
 var flash    = require('connect-flash');
 
 var morgan       = require('morgan');
@@ -19,8 +18,6 @@ var db 				= require('./config/db');
 
 // connect to our mongoDB database 
 mongoose.connect(db.url);
-
-require('./config/passport')(passport); // pass passport for configuration
 
 // include models
 var Song = require("./app/models/song");
@@ -40,16 +37,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override')); 
 
-// required for passport
-app.use(session({ secret: 'oscisoktispro1337' })); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public')); 
 
 // routes ==================================================
-require('./app/routes')(app, passport); // configure our routes
+require('./app/routes')(app); // configure our routes
 
 // start app ===============================================
 // startup our app at http://localhost:8080

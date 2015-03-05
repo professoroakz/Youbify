@@ -9,39 +9,7 @@ var Song = require('./models/song');
 var Playlist = require('./models/playlist');
 var Profile = require('./models/profile');
 
-module.exports = function(app, passport) {
-
-   // LOGOUT
-
-   // LOGOUT ==============================
-    app.post('/logout', function(req, res) {
-        req.logout();
-        res.json({ redirect: '/logout' });
-    });
-
-    // facebook -------------------------------
-
-        // send to facebook to do the authentication
-        app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-
-        // handle the callback after facebook has authenticated the user
-        app.get('/auth/facebook/callback',
-            passport.authenticate('facebook', {
-                successRedirect : '/profile',
-                failureRedirect : '/'
-            }));
-
-    // facebook -------------------------------
-
-        // send to facebook to do the authentication
-        app.get('/connect/facebook', passport.authorize('facebook', { scope : 'email' }));
-
-        // handle the callback after facebook has authorized the user
-        app.get('/connect/facebook/callback',
-            passport.authorize('facebook', {
-                successRedirect : '/profile',
-                failureRedirect : '/'
-            }));
+module.exports = function(app) {
 
 // SONGS =======================================================================
     // route to get all songs
@@ -330,20 +298,3 @@ module.exports = function(app, passport) {
 
 
 };
-
-// route middleware to ensure user is logged in - ajax get
-function isLoggedInAjax(req, res, next) {
-    if (!req.isAuthenticated()) {
-        return res.json( { redirect: '/login' } );
-    } else {
-        next();
-    }
-}
-
-// route middleware to ensure user is logged in
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated())
-        return next();
-
-    res.redirect('/');
-}
