@@ -27,10 +27,6 @@ var Profile = require('./app/models/profile');
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 
-
-
-
-
 ////////////////////////////////////////////////////////////////////////// ANGULAR-BRIDGE 
 
 // Mount all the resource on /api prefix

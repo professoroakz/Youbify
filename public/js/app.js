@@ -2,8 +2,9 @@
 *	app.js - Define all the modules being used
 */
 
-angular.module('sampleApp', 
-	['ngRoute', 
+angular.module('Youbify', 
+	['ngRoute',
+	'ngMessages', 
 	'appRoutes', 
 	'MainCtrl', 
 	'SongCtrl', 
@@ -13,4 +14,5 @@ angular.module('sampleApp',
 	'PlaylistService',
 	'PlaylistDetailCtrl',
 	'ProfileCtrl', 
-	'ProfileService']);
+	'ProfileService',
+	'404Ctrl']);

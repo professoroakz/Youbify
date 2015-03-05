@@ -1,7 +1,6 @@
 angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
 $routeProvider
-
     // home page
     .when('/', {
         templateUrl: 'views/home.html',
@@ -33,7 +32,12 @@ $routeProvider
         templateUrl: 'views/profile.html',
         controller: 'ProfileController'
     })
-    .otherwise('/');
+
+    .when('/404', {
+        templateUrl: 'views/404.html',
+        controller: '404Controller'
+    })
+    .otherwise('/404');
 
 $locationProvider.html5Mode(true);
 }]);
