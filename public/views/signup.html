@@ -1,25 +1,25 @@
-<div class="col-sm-6 col-sm-offset-3">
-
-	<h1><span class="fa fa-sign-in"></span> Signup</h1>
-
-	<div growl></div>
-
-	<!-- LOGIN FORM -->
-	<form ng-submit="signup()" ng-controller="SignupForm">
-		<div class="form-group">
-			<label>Email</label>
-			<input type="text" class="form-control" ng-model="email">
-		</div>
-		<div class="form-group">
-			<label>Password</label>
-			<input type="password" class="form-control" ng-model="password">
-		</div>
-
-		<button type="submit" class="btn btn-warning btn-lg">Signup</button>
-	</form>
-
-	<hr>
-
-	<p>Already have an account? <a href="/login">Login</a></p>
-	<p>Or go <a href="/">home</a>.</p>
+<div class="container">
+ 
+  <div class="center-form panel">
+    <div class="panel-body">
+      <h4 class="text-center"><i class="ion-person-add"></i> Sign up</h4>
+      <form method="post" ng-submit="signup()" name="signupForm">
+        <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.email.$invalid && signupForm.email.$dirty }">
+          <input class="form-control input-lg" type="text" id="email" name="email" ng-model="email" placeholder="Email" required>
+          <span class="ion-at form-control-feedback"></span>
+        </div>
+ 
+        <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.password.$invalid && signupForm.password.$dirty }">
+          <input class="form-control input-lg" type="password" name="password" ng-model="password" placeholder="Password" required>
+          <span class="ion-key form-control-feedback"></span>
+        </div>
+ 
+        <button type="submit" class="btn btn-block btn-primary">Sign up</button>
+        <br/>
+ 
+        <p class="text-center text-muted"><small>Already have an account? <a href="/login">Log in now</a></small></p>
+      </form>
+    </div>
+  </div>
+ 
 </div>

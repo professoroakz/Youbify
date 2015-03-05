@@ -13,18 +13,27 @@
     <div class="jumbotron text-center">
       <p>{{ registertext }}</p>
       <p>
-      <a class="btn btn-lg btn-success" href="/login"><i class="ion-log-in"></i> Log in</a>
+      <a class="btn btn-lg btn-success" href="/login"><i class="ion-log-in"></i>Log in</a>
       <a class="btn btn-lg btn-primary" href="/signup"><i class="ion-person-add"></i> Create account</a>
       </p>
     </div>
   </div>
 
-  <div ng-if="isAuthenticated() && currentUser.username">
+  <div ng-if="isAuthenticated() && !currentUser.username" class="text-center">
+      <h5 class="text-center"><i class="ion-link"></i>Link Account</h5>
+      <p>To complete the registration process you must link your Facebook account.</p>
+      <button class="btn btn-block btn-facebook" ng-click="linkFacebook()">
+        <i class="ion-social-facebook"></i> Sign in with Facebook
+      </button>
+  </div>
+
+  <div ng-if="isAuthenticated() && currentUser.name">
     <div class="row">
       <div class="jumbotron text-center">
+      <p>{{ loggedintext }} </p>
         <p>
-        <a class="btn btn-lg btn-success" href="/songs"><i class="ion-log-in"></i>Songs</a>
-        <a class="btn btn-lg btn-primary" href="/playlists"><i class="ion-person-add"></i>Playlists</a>
+        <a class="btn btn-lg btn-success" href="/songs"><i class=""></i>Songs</a>
+        <a class="btn btn-lg btn-primary" href="/playlists"><i class=""></i>Playlists</a>
         </p>
       </div>
     </div>

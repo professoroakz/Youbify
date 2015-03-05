@@ -4,17 +4,19 @@
 
 angular.module('Youbify', 
 	['ngRoute',
-	'ngMessages', 
+	'ngMessages',
+	'satellizer',
+	'NavbarCtrl',
 	'appRoutes', 
 	'MainCtrl', 
 	'SongCtrl',
 	'SongDetailCtrl',
 	'SongService', 
 	'LoginCtrl', 
+	'SignupCtrl',
 	'PlaylistCtrl',
 	'PlaylistService',
 	'PlaylistDetailCtrl',
 	'ProfileCtrl', 
 	'ProfileService',
-	'404Ctrl',
-	'satellizer']);
+	'404Ctrl']);

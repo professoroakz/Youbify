@@ -21,9 +21,11 @@
     <!-- ANGULAR CUSTOM -->
     <!-- CONTROLLERS -->
     <script src="js/controllers/MainCtrl.js"></script>
+    <script src="js/controllers/NavbarCtrl.js"></script>
     <script src="js/controllers/SongCtrl.js"></script>
     <script src="js/controllers/SongDetailCtrl.js"></script>
     <script src="js/controllers/LoginCtrl.js"></script>
+    <script src="js/controllers/SignupCtrl.js"></script>
     <script src="js/controllers/PlaylistCtrl.js"></script>
     <script src="js/controllers/PlaylistDetailCtrl.js"></script>
     <script src="js/controllers/ProfileCtrl.js"></script>
@@ -44,15 +46,21 @@
     <div class="container"
 
     <!-- HEADER -->
-    <nav class="navbar navbar-inverse">
+    <div ng-controller="NavbarController" class="navbar navbar-inverse">
         <div class="navbar-header">
             <a class="navbar-brand" href="/">Youbify</a>
         </div>
 
+        <div ng-if="!isAuthenticated()">
         <ul class="nav navbar-nav">
             <li><a href="/login">Login</a></li>
         </ul>
+        <ul class="nav navbar-nav">
+            <li><a href="/signup">Sign Up</a></li>
+        </ul>
+        </div>
 
+        <div ng-if="isAuthenticated()">
         <ul class="nav navbar-nav">
             <li><a href="/profile">Profile</a></li>
         </ul>
@@ -65,8 +73,9 @@
         <ul class="nav navbar-nav">
             <li><a href="/playlists">Playlists</a></li>
         </ul>
+        </div>
 
-    </nav>
+    </div>
     <!-- ANGULAR DYNAMIC CONTENT -->
     <div ng-view></div>
 
