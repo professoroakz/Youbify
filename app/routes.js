@@ -183,25 +183,15 @@ module.exports = function(app) {
         });
     });
 
-    // route to handle creating goes here (app.post)
-    app.post("/api/playlists", function(req, res){
+    app.post("/api/playlist", function(req, res){
         var playlist = new Playlist();
         playlist.name = req.body.name;
-        playlist.id = req.body.id;
-
-        Playlist.findById(req.params.playlist_id)
-        .populate('playlistsongs')
-        .exec(function (err, playlist) {
-          if(err) {
-            res.err(500);
-            return;
-          }
-        });
+        playlist.genre = req.body.genre;
+        playlist.mood = req.body.mood;
 
         playlist.save(function(err) {
             if(err)
                 res.send(err);
-
             res.json({message: "playlist created"});
         });
     });
