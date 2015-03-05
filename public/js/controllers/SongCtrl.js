@@ -11,21 +11,13 @@ angular.module('SongCtrl', []).controller('SongController', function($scope, $ht
                         console.log('Error: ' + data);
                 });
     $scope.addsong = function() {
-     $http.post("/api/songs", function(req, res){
-    	var song = new Song();
-        song.artist = "Okke";
-        song.title = "GardenerJam";
-        song.genre = "SpaceFunk";
-        song.url = "www.kth.se/oktayb";
+        /* while compiling form , angular created this object*/
+        var data=$scope.fields;  
+        /* post to server*/
+        $http.post(url, data);        
+    }
+            }
 
-        song.save(function(err) {
-            if(err)
-                res.send(err);
-            res.json({message: "song created"});
-        });
-    });
-        alert("that werked lol");
-}
     /*
 
 	var data = "{"_id":"54f4f8a991abf7ff3c64eef0","songz":[],"__v":1,"playlistsongs":[{"_id":"54f458dc6ded49621c043e54","url":"https://www.youtube.com/watch?v=FWR9MR5juWI","genre":"Deep House","title":"You Know You Like It","artist":"AlunaGeorge","__v":0},{"_id":"54f6ddaedc61acb63b406711","url":"https://www.youtube.com/watch?v=UtF6Jej8yb4","genre":"House","title":"The nights","artist":"Avicii","__v":0}]}";
