@@ -3,6 +3,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope) {
 	$scope.header = "Welcome to Youbify!"
     $scope.tagline = 'Tired of not finding your songs on Spotify?';
     $scope.smalltext = 'Youbify enables you to create playlists and add songs from youtube for instant playback!';
+    $scope.registertext = 'To use Youbify, please log in or register';
 
     $scope.isAuthenticated = function() {
       // check if logged in
