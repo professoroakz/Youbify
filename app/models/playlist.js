@@ -19,3 +19,4 @@ var playlistSchema = new Schema({
 // define our model
 // module.exports allows us to pass this to other files when it is called
 module.exports = mongoose.model('Playlist', playlistSchema);
+exports.Playlist = mongoose.model('Playlist', playlistSchema);

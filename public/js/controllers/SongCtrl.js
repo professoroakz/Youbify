@@ -1,38 +1,39 @@
 angular.module('SongCtrl', []).controller('SongController', function($scope, $http, $sce) {
 
-    $scope.tagline = 'List of songs';
-    $scope.addSongHeader = 'Add new songs';
-    $scope.addSongTagline = 'Add a new song to your library.';
-    $scope.addSongToPlaylist = "Add song to playlist"
-    $scope.whatPlaylist = 'Do you want to add a song to a playlist?';
-    $scope.songAdded = '';
-    $http.get('/api/songs')
-                .success(function(data) {
-                        $scope.songs = data;
-                })
-                .error(function(data) {
-                        console.log('Error: ' + data);
-                });
-    $scope.addsong = function() {
-         $http({
-	 	    url: '/api/songs',
-	 	    method: 'POST',
-	 	    headers: { 'Content-Type': 'application/json' },
-	 	    data: {
-	 	    	artist: $scope.inputArtist, 
-	 	    	title: $scope.inputTitle,
-	 	    	genre: $scope.inputGenre, 
-	 	    	url: $scope.inputYoutubeUrl}
-	 });
+	$scope.tagline = 'List of songs';
+	$scope.addSongHeader = 'Add new songs';
+	$scope.addSongTagline = 'Add a new song to your library.';
+	$scope.addSongToPlaylist = "Add song to playlist"
+	$scope.whatPlaylist = 'Do you want to add a song to a playlist?';
+	$scope.songAdded = '';
+
+	$http.get('/api/songs')
+	.success(function(data) {
+		$scope.songs = data;
+	})
+	.error(function(data) {
+		console.log('Error: ' + data);
+	});
+	$scope.addsong = function() {
+		$http({
+		url: '/api/songs',
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		data: {
+			artist: $scope.inputArtist, 
+			title: $scope.inputTitle,
+			genre: $scope.inputGenre, 
+			url: $scope.inputYoutubeUrl}
+			});
 	/*
 	*		Inform user of song added and clear the fields
 	*/
-        $scope.songAdded = 'Song successfully added!';
-        $scope.inputArtist = "";
-        $scope.inputTitle  = "";
-		$scope.inputGenre = "";
-		$scope.inputYoutubeUrl = "";
-    }
+	$scope.songAdded = 'Song successfully added!';
+	$scope.inputArtist = "";
+	$scope.inputTitle  = "";
+	$scope.inputGenre = "";
+	$scope.inputYoutubeUrl = "";
+}
 });
     /*
 
