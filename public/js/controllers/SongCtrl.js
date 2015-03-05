@@ -16,11 +16,11 @@ angular.module('SongCtrl', []).controller('SongController', function($scope, $ht
         /* post to server*/
         $http.post(url, data);        
     }
-            }
+});
 
     /*
 
-	var data = "{"_id":"54f4f8a991abf7ff3c64eef0","songz":[],"__v":1,"playlistsongs":[{"_id":"54f458dc6ded49621c043e54","url":"https://www.youtube.com/watch?v=FWR9MR5juWI","genre":"Deep House","title":"You Know You Like It","artist":"AlunaGeorge","__v":0},{"_id":"54f6ddaedc61acb63b406711","url":"https://www.youtube.com/watch?v=UtF6Jej8yb4","genre":"House","title":"The nights","artist":"Avicii","__v":0}]}";
+  var data = "{"_id":"54f4f8a991abf7ff3c64eef0","songz":[],"__v":1,"playlistsongs":[{"_id":"54f458dc6ded49621c043e54","url":"https://www.youtube.com/watch?v=FWR9MR5juWI","genre":"Deep House","title":"You Know You Like It","artist":"AlunaGeorge","__v":0},{"_id":"54f6ddaedc61acb63b406711","url":"https://www.youtube.com/watch?v=UtF6Jej8yb4","genre":"House","title":"The nights","artist":"Avicii","__v":0}]}";
 
 > data
 '{"_id":"54f4f8a991abf7ff3c64eef0","songz":[],"__v":1,"playlistsongs":[{"_id":"54f458dc6ded49621c043e54","url":"https://www.youtube.com/watch?v=FWR9MR5juWI","genre":"Deep House","title":"You Know You Like It","artist":"AlunaGeorge","__v":0},{"_id":"54f6ddaedc61acb63b406711","url":"https://www.youtube.com/watch?v=UtF6Jej8yb4","genre":"House","title":"The nights","artist":"Avicii","__v":0}]}'
@@ -56,4 +56,3 @@ undefined
 > 
 
     */
-});
