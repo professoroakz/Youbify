@@ -92,6 +92,8 @@ module.exports = function(app) {
     });
 
 // PLAYLISTS ===================================================================================
+
+
     // route to get all playlists
     app.get('/api/playlists', function(req, res) {
         // use mongoose to get all playlists in the database
@@ -101,43 +103,71 @@ module.exports = function(app) {
             // nothing after res.send(err) will execute
             if (err)
                 res.send(err);
-
             res.json(playlists); // return all playlists in JSON format
         });
     });
 
     // route to get specific playlist
-    app.get('/api/playlists/:playlist_id', function(req, res) {
-        Playlist.findById(req.params.playlist_id, function(err, playlist) {
-
-            // if there is an error retrieving, send the error. 
-            // nothing after res.send(err) will execute
-            if (err)
-                res.send(err);
-
-            res.json(playlist); // return all playlists in JSON format
+    app.get('/api/playlists/:playlist_id', function(req, res, next) {
+        Playlist.findById(req.params.playlist_id)
+        .populate('playlistsongs')
+        .exec(function (err, playlist) {
+          if(err) {
+            res.err(500);
+            return;
+          }
+          playlist.name = req.body.name;
+          playlist.id = req.body.id;
+          res.json(playlist);
         });
     });
 
     // route for update
-    app.put('/api/playlists/:playlist_id', function(req, res) {
+    app.patch('/api/playlists/:playlist_id', function(req, res) {
         Playlist.findById(req.params.playlist_id, function(err, playlist) {
-            if(err)
-                res.send(err);
+            if (req.body.playlistsongs) {
+                playlist.playlistsongs = req.body.playlistsongs;
+            }
+            if (req.body.name) {
+                playlist.name = req.body.name;
+            }
 
-        playlist.name = req.body.name;
-        playlist.genre = req.body.genre;
-        playlist.mood = req.body.mood;
-
-            // if there is an error retrieving, send the error. 
-            // nothing after res.send(err) will execute
             playlist.save(function(err) {
-                if (err)
-                    res.send(err);
-
-            res.json(playlist); // return all playlists in JSON format
+                if(err) {
+                    res.err(500);
+                    return;
+                }
+                res.json(playlist);
             });
-        });
+        })
+        // Playlist.findById(req.params.playlist_id, function(err, playlist) {
+        //     if(err)
+        //         res.send(err);
+
+        //     playlist.name = req.body.name;
+        //     playlist.id = req.body.id;
+
+        // Playlist.findById(req.params.playlist_id)
+        // .populate('playlistsongs')
+        // .exec(function (err, playlist) {
+        //   if(err) {
+        //     res.err(500);
+        //     return;
+        //   }
+          
+        //   playlist.name = req.body.name;
+        //   playlist.id = req.body.id;
+        //   res.json(playlist);
+        // });
+        //     // if there is an error retrieving, send the error. 
+        //     // nothing after res.send(err) will execute
+        //     playlist.save(function(err) {
+        //         if (err)
+        //             res.send(err);
+
+        //     res.json(playlist); // return all playlists in JSON format
+        //     });
+        // });
     });
 
     // route for delete
@@ -154,16 +184,26 @@ module.exports = function(app) {
     });
 
     // route to handle creating goes here (app.post)
-
-    app.post("/api/playlist", function(req, res){
+    app.post("/api/playlists", function(req, res){
         var playlist = new Playlist();
         playlist.name = req.body.name;
-        playlist.genre = req.body.genre;
+        playlist.id = req.body.id;
         playlist.mood = req.body.mood;
+        playlist.genre = req.body.genre;
+        
+        Playlist.findById(req.params.playlist_id)
+        .populate('playlistsongs')
+        .exec(function (err, playlist) {
+          if(err) {
+            res.err(500);
+            return;
+          }
+        });
 
         playlist.save(function(err) {
             if(err)
                 res.send(err);
+
             res.json({message: "playlist created"});
         });
     });
