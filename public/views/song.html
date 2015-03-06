@@ -78,18 +78,16 @@
 
 
     <!-- Single button -->
-    <div class="btn-group" dropdown is-open="status.isopen">
-      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-        Button dropdown <span class="caret"></span>
+
+<div class="btn-group" dropdown is-open="status.isopen">
+      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle >
+        Choose Song <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Separated link</a></li>
+          <li ng-repeat="song in songs"><a href="#">{{song.artist}} - {{song.title}}</a></li>
       </ul>
-    </div>
+ </div>
+
 
 </div>
 
