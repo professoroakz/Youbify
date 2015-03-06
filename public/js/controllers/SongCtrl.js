@@ -14,6 +14,7 @@ angular.module('SongCtrl', []).controller('SongController', function($scope, $ht
 	.error(function(data) {
 		console.log('Error: ' + data);
 	});
+
 	$scope.addsong = function() {
 		$http({
 		url: '/api/songs',
@@ -33,6 +34,7 @@ angular.module('SongCtrl', []).controller('SongController', function($scope, $ht
 	$scope.inputTitle  = "";
 	$scope.inputGenre = "";
 	$scope.inputYoutubeUrl = "";
+	
 }
 });
     /*

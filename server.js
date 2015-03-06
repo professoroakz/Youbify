@@ -27,19 +27,6 @@ var Profile = require('./app/models/profile');
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 
-////////////////////////////////////////////////////////////////////////// ANGULAR-BRIDGE 
-
-// Mount all the resource on /api prefix
-var angularBridge = new (require('angular-bridge'))(app, {
-    urlPrefix : '/api/'
-});
-
-// With express you can password protect a url prefix :
-
-// Expose the Song, Playlist collection via REST
-angularBridge.addResource('Song', db.Song);
-angularBridge.addResource('Playlist', db.Playlist);
-
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 
