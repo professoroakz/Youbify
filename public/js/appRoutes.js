@@ -1,4 +1,4 @@
-angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', '$authProvider', function($routeProvider, $locationProvider, $authProvider) {
+angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
     $routeProvider
     // home page
@@ -48,9 +48,6 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', '
         controller: '404Controller'
     })
     .otherwise('/404');
-
-    $authProvider.loginUrl = 'http://localhost:8080/auth/login';
-    $authProvider.signupUrl = 'http://localhost:8080/auth/signup';
 
     $locationProvider.html5Mode(true);
 }]);
