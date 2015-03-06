@@ -15,3 +15,4 @@ angular.module('Youbify',
 	'PlaylistService',
 	'PlaylistDetailCtrl',
 	'404Ctrl']);
+
