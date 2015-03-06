@@ -208,7 +208,6 @@ module.exports = function(app, passport) {
         });
     });
 
-
     // frontend routes =========================================================
     // route to handle all angular requests
     app.get('*', function(req, res) {
