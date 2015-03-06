@@ -7,11 +7,9 @@
 // Grab the models we create
 var Song = require('./models/song');
 var Playlist = require('./models/playlist');
-var User = require('./models/user');
 
-module.exports = function(app, passport) {
-
-// SONGS =======================================================================
+module.exports = function(app) {
+    // SONGS =======================================================================
     // route to get all songs
     app.get('/api/songs', function(req, res) {
         // use mongoose to get all songs in the database
@@ -216,10 +214,3 @@ module.exports = function(app, passport) {
 
 
 };
-
-
-/*
- |--------------------------------------------------------------------------
-    Middleware
- |--------------------------------------------------------------------------
- */

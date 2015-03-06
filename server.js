@@ -5,7 +5,6 @@ var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
-var passport = require('passport');
 var path 	 = require('path');
 
 var morgan       = require('morgan');
@@ -23,7 +22,6 @@ mongoose.connect(db.url);
 
 // include models
 var Song = require("./app/models/song");
-var User = require("./app/models/song");
 var Playlist = require('./app/models/playlist');
 
 app.use(morgan('dev')); // log every request to the console
@@ -43,11 +41,6 @@ angularBridge.addResource('User', db.User);
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-//passport
-app.use(session({ secret: 'oscisoktis1337proswag' })); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json
@@ -64,7 +57,7 @@ app.use(express.static(__dirname + '/public'));
 
 
 // routes ==================================================
-require('./app/routes')(app, passport); // configure our routes
+require('./app/routes')(app); // configure our routes
 
 // start app ===============================================
 // startup our app at http://localhost:8080

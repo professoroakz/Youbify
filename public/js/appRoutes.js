@@ -18,16 +18,6 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         controller: 'SongDetailController'
     })
 
-    .when('/login', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginController'
-    })
-
-    .when('/signup', {
-        templateUrl: 'views/signup.html',
-        controller: 'SignupController'
-    })
-
     .when('/playlists', {
         templateUrl: 'views/playlists.html',
         controller: 'PlaylistController'
