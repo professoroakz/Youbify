@@ -7,6 +7,8 @@ angular.module('SongCtrl', []).controller('SongController', function($scope, $ht
 	$scope.whatPlaylist = 'Do you want to add a song to a playlist?';
 	$scope.songAdded = '';
 
+
+	
 	$http.get('/api/songs')
 	.success(function(data) {
 		$scope.songs = data;
@@ -14,6 +16,7 @@ angular.module('SongCtrl', []).controller('SongController', function($scope, $ht
 	.error(function(data) {
 		console.log('Error: ' + data);
 	});
+
 	$scope.addsong = function() {
 		$http({
 		url: '/api/songs',
@@ -33,6 +36,14 @@ angular.module('SongCtrl', []).controller('SongController', function($scope, $ht
 	$scope.inputTitle  = "";
 	$scope.inputGenre = "";
 	$scope.inputYoutubeUrl = "";
+
+	$http.get('/api/songs')
+	.success(function(data) {
+		$scope.songs = data;
+	})
+	.error(function(data) {
+		console.log('Error: ' + data);
+	});
 }
 });
     /*
