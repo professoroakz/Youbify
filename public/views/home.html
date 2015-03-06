@@ -12,10 +12,11 @@
   <div ng-if="!isAuthenticated()">
     <div class="jumbotron text-center">
       <p>{{ registertext }}</p>
-      <p>
+      <!--<p>
       <a class="btn btn-lg btn-success" href="/login"><i class="ion-log-in"></i>Log in</a>
       <a class="btn btn-lg btn-primary" href="/signup"><i class="ion-person-add"></i> Create account</a>
-      </p>
+      </p>-->
+      <a redir href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
     </div>
   </div>
 

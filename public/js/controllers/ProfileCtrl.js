@@ -1,7 +1,7 @@
-angular.module('ProfileCtrl', []).controller('ProfileController', function($scope, $http) {
-
-    $scope.tagline = 'Your profile info.';
-    $scope.firstlastname = 'Name: ';
-    $scope.country = 'Country: ';
-    $scope.genres = 'Favorite genres:';
-});
+angular.module('ProfileCtrl', []).controller('ProfileController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
+            //Custom Profile functionality
+            $http.get('/api/userData')
+                .success(function(data) {
+                    $scope.name = data.facebook.name; //Expose the user data to your angular scope
+                    $scope.email = data.facebook.email;
+                })}]);
