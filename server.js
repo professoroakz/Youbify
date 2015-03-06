@@ -5,13 +5,14 @@ var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
-var flash    = require('connect-flash');
+var path 	 = require('path');
 
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var methodOverride 	= require('method-override');
 var session      = require('express-session');
+
 var db 				= require('./config/db');
 
 // configuration ===========================================
@@ -22,13 +23,9 @@ mongoose.connect(db.url);
 // include models
 var Song = require("./app/models/song");
 var Playlist = require('./app/models/playlist');
-var Profile = require('./app/models/profile');
 
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
-
-////////////////////////////////////////////////////////////////////////////////////////////
-
 
 
 // get all data/stuff of the body (POST) parameters
@@ -44,14 +41,13 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public')); 
 
+
 // routes ==================================================
 require('./app/routes')(app); // configure our routes
 
 // start app ===============================================
 // startup our app at http://localhost:8080
-app.listen(port);               
-
-// shoutout to the user                     
+app.listen(port);                                   
 console.log('Magic happens on port: ' + port);
 
 // expose app           

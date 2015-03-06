@@ -77,16 +77,19 @@
      </select>  
 
 
-<div class="floatLeftButtonBar">
-    <div class="btn-group">
-    <button class="btn btn-inverse btn-info">Action</button>
-    <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-    <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-    <li ng-repeat="x in songs"><a tabindex="-1" ng-click="select(x)">{{x.artist}}</a></li></ul></div> 
-</div>
-
+    <!-- Single button -->
+    <div class="btn-group" dropdown is-open="status.isopen">
+      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+        Button dropdown <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
 
 </div>
 

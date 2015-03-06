@@ -7,11 +7,9 @@
 // Grab the models we create
 var Song = require('./models/song');
 var Playlist = require('./models/playlist');
-var Profile = require('./models/profile');
 
 module.exports = function(app) {
-
-// SONGS =======================================================================
+    // SONGS =======================================================================
     // route to get all songs
     app.get('/api/songs', function(req, res) {
         // use mongoose to get all songs in the database
@@ -58,7 +56,7 @@ module.exports = function(app) {
                     res.send(err);
 
             res.json(song); // return all songs in JSON format
-            });
+        });
         });
     });
 
@@ -115,11 +113,11 @@ module.exports = function(app) {
           if(err) {
             res.err(500);
             return;
-          }
-          playlist.name = req.body.name;
-          playlist.id = req.body.id;
-          res.json(playlist);
-        });
+        }
+        playlist.name = req.body.name;
+        playlist.id = req.body.id;
+        res.json(playlist);
+    });
     });
 
     // route for update
@@ -154,7 +152,7 @@ module.exports = function(app) {
         //     res.err(500);
         //     return;
         //   }
-          
+
         //   playlist.name = req.body.name;
         //   playlist.id = req.body.id;
         //   res.json(playlist);
@@ -168,7 +166,7 @@ module.exports = function(app) {
         //     res.json(playlist); // return all playlists in JSON format
         //     });
         // });
-    });
+});
 
     // route for delete
     app.delete('/api/playlists/:playlist_id', function(req, res) {
@@ -197,8 +195,8 @@ module.exports = function(app) {
           if(err) {
             res.err(500);
             return;
-          }
-        });
+        }
+    });
 
         playlist.save(function(err) {
             if(err)
@@ -207,90 +205,6 @@ module.exports = function(app) {
             res.json({message: "playlist created"});
         });
     });
-
-
-    // frontend routes =========================================================
-    // route to handle all angular requests
-    app.get('*', function(req, res) {
-        res.sendfile('./public/views/index.html'); // load our public/index.html file
-    });
-// PROFILE =============================================================================
-
-
-
-    // route to get all profiles
-    app.get('/api/profile', function(req, res) {
-        // use mongoose to get all profiles in the database
-        Profile.find(function(err, profiles) {
-
-            // if there is an error retrieving, send the error. 
-            // nothing after res.send(err) will execute
-            if (err)
-                res.send(err);
-            res.json(profiles); // return all profiles in JSON format
-        });
-    });
-
-    // route to get specific profile
-    app.get('/api/profile/:profile_id', function(req, res) {
-        Profile.findById(req.params.profile_id, function(err, profile) {
-
-            // if there is an error retrieving, send the error. 
-            // nothing after res.send(err) will execute
-            if (err)
-                res.send(err);
-
-            res.json(profile); // return all profiles in JSON format
-        });
-    });
-
-    // route for update
-    app.put('/api/profile/:profile_id', function(req, res) {
-        Profile.findById(req.params.profile_id, function(err, profile) {
-            if(err)
-                res.send(err);
-
-            profile.name = req.body.name;
-            profile.id = req.body.id;
-
-            // if there is an error retrieving, send the error. 
-            // nothing after res.send(err) will execute
-            profile.save(function(err) {
-                if (err)
-                    res.send(err);
-
-            res.json(profile); // return all profiles in JSON format
-            });
-        });
-    });
-
-    // route for delete
-    app.delete('/api/profile/:profile_id', function(req, res) {
-        // use mongoose to get all profiles in the database
-        Profile.remove({_id: req.params.profile_id
-        }, function(err, profile) {
-            if (err)
-                res.send(err);
-
-            res.json({message: "succesfully deleted"}); // return all profiles in JSON format
-
-        });
-    });
-
-    // route to handle creating goes here (app.post)
-    app.post("/api/profile", function(req, res){
-        var profile = new Profile();
-        profile.name = req.body.name;
-        profile.id = req.body.id;
-
-        profile.save(function(err) {
-            if(err)
-                res.send(err);
-
-            res.json({message: "profile created"});
-        });
-    });
-
 
     // frontend routes =========================================================
     // route to handle all angular requests
