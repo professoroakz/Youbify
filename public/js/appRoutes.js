@@ -52,9 +52,5 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', '
     $authProvider.loginUrl = 'http://localhost:8080/auth/login';
     $authProvider.signupUrl = 'http://localhost:8080/auth/signup';
 
-    $authProvider.facebook({
-      clientId: '346715585530768'
-  });
-
     $locationProvider.html5Mode(true);
 }]);

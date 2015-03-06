@@ -14,6 +14,13 @@ var methodOverride 	= require('method-override');
 var session      = require('express-session');
 var db 				= require('./config/db');
 
+var bcrypt = require('bcryptjs');
+var cors = require('cors');
+var jwt = require('jwt-simple');
+var moment = require('moment');
+var path = require('path');
+var request = require('request');
+
 // configuration ===========================================
 
 // connect to our mongoDB database 
@@ -21,11 +28,13 @@ mongoose.connect(db.url);
 
 // include models
 var Song = require("./app/models/song");
+var User = require("./app/models/song");
 var Playlist = require('./app/models/playlist');
 var Profile = require('./app/models/profile');
 
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
+app.use(cors());
 
 ////////////////////////////////////////////////////////////////////////// ANGULAR-BRIDGE 
 
@@ -39,6 +48,7 @@ var angularBridge = new (require('angular-bridge'))(app, {
 // Expose the Song, Playlist collection via REST
 angularBridge.addResource('Song', db.Song);
 angularBridge.addResource('Playlist', db.Playlist);
+angularBridge.addResource('User', db.User);
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -56,6 +66,7 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public')); 
+
 
 // routes ==================================================
 require('./app/routes')(app); // configure our routes

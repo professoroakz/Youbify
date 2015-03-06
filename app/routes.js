@@ -7,6 +7,7 @@
 // Grab the models we create
 var Song = require('./models/song');
 var Playlist = require('./models/playlist');
+var User = require('./models/user');
 var Profile = require('./models/profile');
 
 module.exports = function(app) {
@@ -58,7 +59,7 @@ module.exports = function(app) {
                     res.send(err);
 
             res.json(song); // return all songs in JSON format
-            });
+        });
         });
     });
 
@@ -115,11 +116,11 @@ module.exports = function(app) {
           if(err) {
             res.err(500);
             return;
-          }
-          playlist.name = req.body.name;
-          playlist.id = req.body.id;
-          res.json(playlist);
-        });
+        }
+        playlist.name = req.body.name;
+        playlist.id = req.body.id;
+        res.json(playlist);
+    });
     });
 
     // route for update
@@ -154,7 +155,7 @@ module.exports = function(app) {
         //     res.err(500);
         //     return;
         //   }
-          
+
         //   playlist.name = req.body.name;
         //   playlist.id = req.body.id;
         //   res.json(playlist);
@@ -168,7 +169,7 @@ module.exports = function(app) {
         //     res.json(playlist); // return all playlists in JSON format
         //     });
         // });
-    });
+});
 
     // route for delete
     app.delete('/api/playlists/:playlist_id', function(req, res) {
@@ -197,8 +198,8 @@ module.exports = function(app) {
           if(err) {
             res.err(500);
             return;
-          }
-        });
+        }
+    });
 
         playlist.save(function(err) {
             if(err)
@@ -208,12 +209,6 @@ module.exports = function(app) {
         });
     });
 
-
-    // frontend routes =========================================================
-    // route to handle all angular requests
-    app.get('*', function(req, res) {
-        res.sendfile('./public/views/index.html'); // load our public/index.html file
-    });
 // PROFILE =============================================================================
 
 
@@ -260,7 +255,7 @@ module.exports = function(app) {
                     res.send(err);
 
             res.json(profile); // return all profiles in JSON format
-            });
+        });
         });
     });
 
@@ -292,6 +287,62 @@ module.exports = function(app) {
     });
 
 
+
+    app.post('/auth/login', function(req, res) {
+      User.findOne({ email: req.body.email }, '+password', function(err, user) {
+        if (!user) {
+          return res.status(401).send({ message: { email: 'Incorrect email' } });
+      }
+
+      bcrypt.compare(req.body.password, user.password, function(err, isMatch) {
+          if (!isMatch) {
+            return res.status(401).send({ message: { password: 'Incorrect password' } });
+        }
+
+        user = user.toObject();
+        delete user.password;
+
+        var token = createToken(user);
+        res.send({ token: token, user: user });
+    });
+  });
+  });
+
+    /*
+ |--------------------------------------------------------------------------
+ | Create Email and Password Account
+ |--------------------------------------------------------------------------
+ */
+ app.post('/auth/signup', function(req, res) {
+    console.log("initiated signup");
+  User.findOne({ email: req.body.email }, function(err, existingUser) {
+    if (existingUser) {
+      return res.status(409).send({ message: 'Email is already taken.' });
+  }
+
+  var user = new User({
+      email: req.body.email,
+      password: req.body.password
+  });
+
+  bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash(user.password, salt, function(err, hash) {
+        user.password = hash;
+
+        user.save(function() {
+          var token = createToken(user);
+          res.send({ token: token, user: user });
+      });
+    });
+  });
+});
+});
+
+ app.get('/protected', isAuthenticated, function(req, res) {
+  // Prints currently signed-in user object
+  console.log(req.user);
+});
+
     // frontend routes =========================================================
     // route to handle all angular requests
     app.get('*', function(req, res) {
@@ -300,3 +351,44 @@ module.exports = function(app) {
 
 
 };
+
+
+/*
+ |--------------------------------------------------------------------------
+    Middleware
+ |--------------------------------------------------------------------------
+ */
+
+ function createToken(user) {
+  var payload = {
+    exp: moment().add(14, 'days').unix(),
+    iat: moment().unix(),
+    sub: user._id
+};
+
+return jwt.encode(payload, config.tokenSecret);
+}
+
+function isAuthenticated(req, res, next) {
+  if (!(req.headers && req.headers.authorization)) {
+    return res.status(400).send({ message: 'You did not provide a JSON Web Token in the Authorization header.' });
+}
+
+var header = req.headers.authorization.split(' ');
+var token = header[1];
+var payload = jwt.decode(token, config.tokenSecret);
+var now = moment().unix();
+
+if (now > payload.exp) {
+    return res.status(401).send({ message: 'Token has expired.' });
+}
+
+User.findById(payload.sub, function(err, user) {
+    if (!user) {
+      return res.status(400).send({ message: 'User no longer exists.' });
+  }
+
+  req.user = user;
+  next();
+})
+}

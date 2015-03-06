@@ -19,14 +19,6 @@
     </div>
   </div>
 
-  <div ng-if="isAuthenticated() && !currentUser.username" class="text-center">
-      <h5 class="text-center"><i class="ion-link"></i>Link Account</h5>
-      <p>To complete the registration process you must link your Facebook account.</p>
-      <button class="btn btn-block btn-facebook" ng-click="linkFacebook()">
-        <i class="ion-social-facebook"></i> Sign in with Facebook
-      </button>
-  </div>
-
   <div ng-if="isAuthenticated() && currentUser.name">
     <div class="row">
       <div class="jumbotron text-center">
