@@ -13,6 +13,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         controller: 'SongController'
     })
 
+    .when('/songLibrary', {
+        templateUrl: 'views/songLibrary.html',
+        controller: 'safeController' // change this to SongController or safeCtrl to see changes
+    })
+
     .when('/songs/:id', {
         templateUrl: 'views/songdetail.html',
         controller: 'SongDetailController'
@@ -37,6 +42,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         templateUrl: 'views/404.html',
         controller: '404Controller'
     })
+
     .otherwise('/404');
 
     $locationProvider.html5Mode(true);

@@ -1,4 +1,4 @@
-angular.module('SongCtrl', ['ui.bootstrap']).controller('SongController', function($scope, $http, $sce) {
+angular.module('SongCtrl', ['ui.bootstrap', 'smart-table']).controller('SongController', function($scope, $http, $sce) {
 
 	$scope.tagline = 'List of songs';
 	$scope.addSongHeader = 'Add new songs';
@@ -6,12 +6,13 @@ angular.module('SongCtrl', ['ui.bootstrap']).controller('SongController', functi
 	$scope.addSongToPlaylist = "Add song to playlist"
 	$scope.whatPlaylist = 'Do you want to add a song to a playlist?';
 	$scope.songAdded = '';
-	$scope.itemsByPage = 15;
 
-	
+
+
 	$http.get('/api/songs')
 	.success(function(data) {
 		$scope.songs = data;
+
 	})
 	.error(function(data) {
 		console.log('Error: ' + data);
