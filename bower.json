@@ -1,12 +1,13 @@
 {
-    "name": "Youbify",
-    "version": "1.0.0",
-    "dependencies": {
-        "bootstrap": "latest",
-        "font-awesome": "latest",
-        "animate.css": "latest",
-        "angular": "latest",
-        "angular-route": "latest",  
-        "angular-bootstrap" : "latest"
-    }
+  "name": "Youbify",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap": "latest",
+    "font-awesome": "latest",
+    "animate.css": "latest",
+    "angular": "latest",
+    "angular-route": "latest",
+    "angular-bootstrap": "latest",
+    "nya-bootstrap-select": "~2.0.10"
+  }
 }

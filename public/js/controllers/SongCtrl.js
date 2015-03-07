@@ -6,26 +6,8 @@ angular.module('SongCtrl', ['ui.bootstrap']).controller('SongController', functi
 	$scope.addSongToPlaylist = "Add song to playlist"
 	$scope.whatPlaylist = 'Do you want to add a song to a playlist?';
 	$scope.songAdded = '';
+	$scope.itemsByPage = 15;
 
-  $scope.items = [
-    'The first choice!',
-    'And another choice for you.',
-    'but wait! A third!'
-  ];
-
-  $scope.status = {
-    isopen: false
-  };
-
-  $scope.toggled = function(open) {
-    $log.log('Dropdown is now: ', open);
-  };
-
-  $scope.toggleDropdown = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.status.isopen = !$scope.status.isopen;
-  };
 	
 	$http.get('/api/songs')
 	.success(function(data) {
@@ -34,6 +16,7 @@ angular.module('SongCtrl', ['ui.bootstrap']).controller('SongController', functi
 	.error(function(data) {
 		console.log('Error: ' + data);
 	});
+
 
 	$scope.addsong = function() {
 		$http({

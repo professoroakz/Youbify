@@ -55,8 +55,7 @@
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="chooseSongDropdown">
-				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-				<li ng-repeat"x in songs">{{x.title}}</li>
+          <li ng-repeat="song in songs"><a href="#">{{song.artist}} - {{song.title}}</a></li>
 			</ul>
 
 
@@ -65,16 +64,13 @@
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="choosePlaylistDropdown">
+          	<li ng-repeat="song in songs"><a href="#">{{song.artist}} - {{song.title}}</a></li>
+			</ul>
 		</div>
 	</br>
 
 	<input type="submit" id="submit" class="btn btn-primary" value="Add song to playlist" />
 	<p>{{songAdded}}</p>
-
-
-<select name="songs" ng-model="songs">
-         <option ng:repeat="x in songs" value="{{x.artist}}">{{x.artist}} - {{x.title}}</option>
-     </select>  
 
 
     <!-- Single button -->
@@ -88,6 +84,17 @@
       </ul>
  </div>
 
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    Option: <span class="selection">Option 1</span><span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#">Option 1</a></li>
+    <li><a href="#">Option 2</a></li>
+    <li><a href="#">Option 3</a></li>
+  </ul>
+</div>
+
 
 </div>
 
@@ -95,22 +102,43 @@
 
 <div class="jumbotron text-center">
 	<h1>{{ tagline }}</h1>
-	<table class='table table-bordered'>
-		<caption>LIST OF ALL SONGS</caption>
+
+<table st-table="songs" class="table table-striped">
+		<thead>
 		<tr>
-			<td>Artist</td>
-			<td>Title</td>
-			<td>Genre</td>
-			<td>Url</td>
-			<td>Video</td>
+			<th st-sort="artist">artist</th>
+			<th st-sort="title">title</th>
+			<th st-sort="genre">genre</th>
+			<th>link</th>
 		</tr>
-		<tr ng-repeat="x in songs">
-			<td>{{x.artist}}</td>
-			<td>{{x.title}}</td>
-			<td>{{x.genre}}</td> 
-			<td>{{x.url}}</td>
-			<!-- <td><iframe width="560" height="315" ng-src="http://www.youtube.com/embed/2Ai3m2P5WKg" frameborder="0" allowfullscreen></iframe></td> -->
-			
+		<tr>
+			<th>
+				<input st-search="'artist'" placeholder="search for artist" class="input-sm form-control" type="search"/>
+			</th>
+			<th colspan="4">
+				<input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+			</th>
 		</tr>
-	</table> 
+		</thead>
+		<tbody>
+		<tr ng-repeat="song in songs">
+			<td>{{song.artist}}</td>
+			<td>{{song.title}}</td>
+			<td>{{song.genre}}</td>
+			<td><a ng-href="{{song.url}}">link</a></td>
+		</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="4" class="text-center">
+					<div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+
+
+
+
+
 </div>
