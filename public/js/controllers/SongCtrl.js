@@ -1,4 +1,4 @@
-angular.module('SongCtrl', ['ui.bootstrap']).controller('SongController', function($scope, $http, $sce) {
+angular.module('SongCtrl', ['ui.bootstrap', 'smart-table']).controller('SongController', function($scope, $http, $sce) {
 
 	$scope.tagline = 'List of songs';
 	$scope.addSongHeader = 'Add new songs';
@@ -7,33 +7,17 @@ angular.module('SongCtrl', ['ui.bootstrap']).controller('SongController', functi
 	$scope.whatPlaylist = 'Do you want to add a song to a playlist?';
 	$scope.songAdded = '';
 
-  $scope.items = [
-    'The first choice!',
-    'And another choice for you.',
-    'but wait! A third!'
-  ];
 
-  $scope.status = {
-    isopen: false
-  };
 
-  $scope.toggled = function(open) {
-    $log.log('Dropdown is now: ', open);
-  };
-
-  $scope.toggleDropdown = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.status.isopen = !$scope.status.isopen;
-  };
-	
 	$http.get('/api/songs')
 	.success(function(data) {
 		$scope.songs = data;
+
 	})
 	.error(function(data) {
 		console.log('Error: ' + data);
 	});
+
 
 	$scope.addsong = function() {
 		$http({

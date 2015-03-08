@@ -11,12 +11,15 @@
     <link rel="stylesheet" href="css/style.css"> <!-- custom styles -->
     <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.css">
-
-    <!-- JS -->
+    <link rel="stylesheet" href="libs/nya-bootstrap-select/dist/css/nya-bs-select.css">
+    <!-- JS LIBS AND APIS -->
     <script src="libs/angular/angular.js"></script>
     <script src="libs/angular-route/angular-route.js"></script>
     <script src="libs/angular-messages/angular-messages.js"></script>
     <script src="libs/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="libs/nya-bootstrap-select/dist/js/nya-bs-select.js"></script>
+    <script src="libs/angular-smart-table/dist/smart-table.js"></script>
+
 
     <!-- ANGULAR CUSTOM -->
     <!-- CONTROLLERS -->
@@ -27,6 +30,8 @@
     <script src="js/controllers/PlaylistCtrl.js"></script>
     <script src="js/controllers/PlaylistDetailCtrl.js"></script>
     <script src="js/controllers/404Ctrl.js"></script>
+    <script src="js/controllers/paginationCtrl.js"></script>
+    <script src="js/controllers/safeCtrl.js"></script>
 
     <!-- SERVICES -->
     <script src="js/services/SongService.js"></script>
@@ -55,6 +60,10 @@
 
         <ul class="nav navbar-nav">
             <li><a href="/playlists">Playlists</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav">
+            <li><a href="/songLibrary">Library</a></li>
         </ul>
         </div>
 
