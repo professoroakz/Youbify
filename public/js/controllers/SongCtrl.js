@@ -1,4 +1,4 @@
-angular.module('SongCtrl', ['ui.bootstrap']).controller('SongController', function($scope, $http, $sce) {
+angular.module('SongCtrl', ['ui.bootstrap']).controller('SongController', function($scope, $http, $sce, $rootScope) {
 
 	$scope.tagline = 'List of songs';
 	$scope.addSongHeader = 'Add new songs';
@@ -7,7 +7,10 @@ angular.module('SongCtrl', ['ui.bootstrap']).controller('SongController', functi
 	$scope.whatPlaylist = 'Do you want to add a song to a playlist?';
 	$scope.songAdded = '';
 	$scope.songCollection = [];
-
+    $rootScope.playlistURL = '/api/playlists:';
+    $rootScope.songID;
+    $rootScope.playlistID;
+    $rootScope.playlistsongs = [];
 
 	$http.get('/api/songs')
 	.success(function(data) {
@@ -72,21 +75,78 @@ $scope.searchPlaylist = function (term) {
 
 }
 
-	$scope.addSongToPlaylist = function() {
-		return $http({
-			url: '/api/songs',
-			method: 'GET',
-			headers: { 'Content-Type': 'application/json' },
-			params : {
-				title: '7/11'
-			}
-		}).then(function (response) {
-		console.log(response.data[i].name);
+
+$scope.addSongToPlaylist = function (term) {
+        // Get the ID for the song with a GET request for song
+        $http({
+            url: '/api/songs',
+            method: 'GET',
+        })
+
+        .then(function (response) {
+            for (var i = 0; i < response.data.length; i++) {
+                if(response.data[i].title === $scope.inputTitleTypeahead){
+                	$scope.songID = response.data[i]._id;
+                }
+            }
+     //       console.log("Song " + songID);//as expected
+        });
+
+        // Get the ID for the playlist with a GET request for playlist
+
+        $http({
+            url: '/api/playlists',
+            method: 'GET',
+        })
+
+        .then(function (response) {
+            for (var i = 0; i < response.data.length; i++) {
+                if(response.data[i].name === $scope.inputPlaylistTypeahead){
+                	
+                	$scope.playlistID = response.data[i]._id;
+
+                	for(var j = 0; j < response.data[i].playlistsongs.length; j++){
+                		console.log( "a song in the playlist:" + response.data[i].playlistsongs[j] );
+                		$scope.playlistsongs += response.data[i].playlistsongs[j];
+                	}
+                	break
+                }
+            }
+     //       console.log("Playlist: " + playlistID[0]);//as expected
+        	$rootScope.playlistURL += playlistID[0];
+   //     	console.log(playlistURL);
+
+        console.log("URL for playlist: " + $scope.playlistURL);
+        console.log("PlaylistID: " + $scope.playlistID);
+        console.log("Song ID: " + $scope.songID);
+        console.log("Playlistsongs index 0: " + $scope.playlistsongs[0]);
+
+        });
+
+        console.log("URL for playlist: " + $scope.playlistURL);
+        console.log("PlaylistID: " + $scope.playlistID);
+        console.log("Song ID: " + $scope.songID);
+        console.log("Playlistsongs index 0: " + $scope.playlistsongs[0]);
 }
 
-		$scope.inputTitleTypeahead = '';
-		$scope.inputPlaylistTypeahead = '';
-}
+// WORKS FINE:::::::::
+
+		// $http({
+		// url: '/api/playlists/54f8b46c3a1ca934f4dae6f7',
+		// method: 'PATCH',
+		// data: {
+		// playlistsongs : ['54f88ee4a4d57da8bec141ce']
+		// }
+		// 	});
+
+//                 $http({
+//         	url: '/api/playlists/:' + playlistID
+//         	method: 'PATCH',
+// 		data: {
+// 			playlistsongs: [songID[0]]
+// 		}
+// };
+
 
 
 
