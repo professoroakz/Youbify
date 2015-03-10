@@ -15,7 +15,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
     .when('/songLibrary', {
         templateUrl: 'views/songLibrary.html',
-        controller: 'safeController' // change this to SongController or safeCtrl to see changes
+        controller: 'SongController' // change this to SongController or safeCtrl to see changes
     })
 
     .when('/songs/:id', {
