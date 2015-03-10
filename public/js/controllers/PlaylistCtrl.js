@@ -13,12 +13,7 @@ angular.module('PlaylistCtrl', []).controller('PlaylistController', function($sc
         console.log('Error: ' + data);
     });
 
-    $scope.addplaylist = function() {
-        console.log($scope.inputPlaylistID);
-        console.log($scope.inputPlaylistName);
-        console.log($scope.inputPlaylistMood);
-        console.log($scope.inputPlaylistGenre);
-        
+    $scope.addplaylist = function() {    
        $http({
         url: '/api/playlists',
         method: 'POST',

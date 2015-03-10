@@ -18,6 +18,37 @@ angular.module('SongCtrl', ['ui.bootstrap']).controller('SongController', functi
 		console.log('Error: ' + data);
 	});
 
+$scope.searchSong = function (term) {
+        return $http({
+            url: '/api/songs',
+            method: 'GET',
+        }).
+        then(function (response) {
+            var titles = [];
+            for (var i = 0; i < response.data.length; i++) {
+                titles.push(response.data[i].title);
+            }
+            console.log(titles);//as expected
+
+            return titles;
+        });
+    };
+
+$scope.searchPlaylist = function (term) {
+        return $http({
+            url: '/api/playlists',
+            method: 'GET',
+        }).
+        then(function (response) {
+            var playlistNames = [];
+            for (var i = 0; i < response.data.length; i++) {
+                playlistNames.push(response.data[i].name);
+            }
+            console.log(playlistNames);//as expected
+
+            return playlistNames;
+        });
+    };
 
 	$scope.addsong = function() {
 		$http({
@@ -47,6 +78,38 @@ angular.module('SongCtrl', ['ui.bootstrap']).controller('SongController', functi
 		console.log('Error: ' + data);
 	});
 }
+
+	$scope.addToPlaylist = function() {
+		$http({
+		url: '/api/songs',
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		data: {
+			artist: $scope.inputArtist, 
+			title: $scope.inputTitle,
+			genre: $scope.inputGenre, 
+			url: $scope.inputYoutubeUrl}
+			});
+	/*
+	*		Inform user of song added and clear the fields
+	*/
+	$scope.songAdded = 'Song successfully added!';
+	$scope.inputArtist = "";
+	$scope.inputTitle  = "";
+	$scope.inputGenre = "";
+	$scope.inputYoutubeUrl = "";
+
+	$http.get('/api/songs')
+	.success(function(data) {
+		$scope.songs = data;
+	})
+	.error(function(data) {
+		console.log('Error: ' + data);
+	});
+}
+
+
+
 });
     /*
 
