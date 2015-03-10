@@ -7,10 +7,10 @@ angular.module('SongCtrl', ['ui.bootstrap']).controller('SongController', functi
 	$scope.whatPlaylist = 'Do you want to add a song to a playlist?';
 	$scope.songAdded = '';
 	$scope.songCollection = [];
-    $rootScope.playlistURL = '/api/playlists:';
-    $rootScope.songID;
-    $rootScope.playlistID;
-    $rootScope.playlistsongs = [];
+    $scope.playlistURL = '/api/playlists:';
+    $scope.songID = '';
+    $scope.playlistID = '';
+    $scope.playlistsongs = [];
 
 	$http.get('/api/songs')
 	.success(function(data) {
@@ -86,7 +86,7 @@ $scope.addSongToPlaylist = function (term) {
         .then(function (response) {
             for (var i = 0; i < response.data.length; i++) {
                 if(response.data[i].title === $scope.inputTitleTypeahead){
-                	$scope.songID = response.data[i]._id;
+                	$scope.songID += response.data[i]._id.toString();
                 }
             }
      //       console.log("Song " + songID);//as expected
@@ -103,30 +103,29 @@ $scope.addSongToPlaylist = function (term) {
             for (var i = 0; i < response.data.length; i++) {
                 if(response.data[i].name === $scope.inputPlaylistTypeahead){
                 	
-                	$scope.playlistID = response.data[i]._id;
+                	$scope.playlistID += response.data[i]._id.toString();
+                	console.log($scope.playlistID);
 
                 	for(var j = 0; j < response.data[i].playlistsongs.length; j++){
                 		console.log( "a song in the playlist:" + response.data[i].playlistsongs[j] );
-                		$scope.playlistsongs += response.data[i].playlistsongs[j];
+                		$scope.playlistsongs.push(response.data[i].playlistsongs[j].toString());
                 	}
                 	break
                 }
             }
      //       console.log("Playlist: " + playlistID[0]);//as expected
-        	$rootScope.playlistURL += playlistID[0];
+        	$rootScope.playlistURL += $scope.playlistID[0];
    //     	console.log(playlistURL);
 
         console.log("URL for playlist: " + $scope.playlistURL);
         console.log("PlaylistID: " + $scope.playlistID);
         console.log("Song ID: " + $scope.songID);
-        console.log("Playlistsongs index 0: " + $scope.playlistsongs[0]);
+        console.log("Playlistsongs index 0: " + $scope.playlistsongs);
 
         });
 
-        console.log("URL for playlist: " + $scope.playlistURL);
-        console.log("PlaylistID: " + $scope.playlistID);
-        console.log("Song ID: " + $scope.songID);
-        console.log("Playlistsongs index 0: " + $scope.playlistsongs[0]);
+    //    console.log("Song ID: " + $scope.songID);
+    //    console.log("Playlistsongs index 0: " + $scope.playlistsongs[0]);
 }
 
 // WORKS FINE:::::::::

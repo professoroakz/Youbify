@@ -10,8 +10,12 @@ angular.module('PlaylistService', []).factory('Playlist', ['$http', function($ht
             return $http.get('/api/playlists');
         },
 
+        post : function() {
+            return $http.post('/api/playlists');
+        },
+
         // these will work when more API routes are defined on the Node side of things
-        // call to POST and create a new nerd
+        // call to POST and create a new playlist
         create : function(playlistData) {
             return $http.post('/api/playlists', playlistData);
         },
