@@ -3,7 +3,7 @@
 	<p>{{addSongTagline}}</p>
 </br>
 <!-- Input fields for playlist -->
-<form name="songForm" ng-submit="addsong()">
+<form name="songForm" ng-submit="addSong()">
 
 	<form class="form-horizontal">
 		<div class="form-group">
@@ -47,32 +47,37 @@
 
 		</form>
 		<!-- Playlist stuff -->
-		<h1>{{addSongToPlaylist}}</h1>
+		<h1>{{songToPlaylist}}</h1>
 		<p>{{whatPlaylist}}</p>
 
+<form name="addSongToPlaylistForm" ng-submit="addSongToPlaylist()">
 		<div class='container-fluid'>
-			<pre>Song: {{result1 | json}} Playlist: {{result2 | json}} </pre>
+			<pre>Song: {{inputTitleTypeahead | json}} Playlist: {{inputPlaylistTypeahead | json}} </pre>
 			<!-- Song -->
 			<form class="form-horizontal">
 				<div class="form-group">
-					<label for="inputArtistTypeahead" class="col-sm-2 control-label">Song title</label>
-					<div class="col-sm-10" id="inputArtistTypeahead">
-						<input type="text" ng-model="result1" typeahead="song for song in searchSong($searchSong) | limitTo:2" typeahead-editable="false" class="form-control" placeholder="Input a title for a song..">
-					</div>
 					</div>
 					</form>
 			<!-- Song -->
 					<form class="form-horizontal">
 						<div class="form-group">
-							<label for="inputPlaylistTypeahead" class="col-sm-2 control-label">Playlist title</label>
-							<div class="col-sm-10" id="inputPlaylistTypeahead">
-								<input type="text" ng-model="result2" typeahead="song for song in searchPlaylist($searchPlaylist) | limitTo:2" typeahead-editable="false" class="form-control" placeholder="Input a playlist name..">
+							<label for="inputTitleTypeahead" class="col-sm-2 control-label">Song title</label>
+							<div class="col-sm-10" id="inputTitleTypeahead">
+								<input id="inputTitleTypeahead" type="text" ng-model="inputTitleTypeahead" typeahead="song for song in searchSong($searchSong) | limitTo:2" typeahead-editable="false" class="form-control" placeholder="Input a playlist name..">
 							</div>						
 						</div>
+						</form>
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="inputPlaylistTypeahead" class="col-sm-2 control-label">Playlist title</label>
+							<div class="col-sm-10" id="inputPlaylistTypeahead">
+								<input id="inputPlaylistTypeahead" type="text" ng-model="inputPlaylistTypeahead" typeahead="song for song in searchPlaylist($searchPlaylist) | limitTo:2" typeahead-editable="false" class="form-control" placeholder="Input a playlist name..">
+							</div>						
+						</div>
+						</form>
 					</br>
 					<input type="submit" id="submit" class="btn btn-primary" value="Add song to playlist" />
 					<p>{{songAdded}}</p>
-
 
 </div>
 

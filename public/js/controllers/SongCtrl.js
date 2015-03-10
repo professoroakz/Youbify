@@ -3,7 +3,7 @@ angular.module('SongCtrl', ['ui.bootstrap']).controller('SongController', functi
 	$scope.tagline = 'List of songs';
 	$scope.addSongHeader = 'Add new songs';
 	$scope.addSongTagline = 'Add a new song to your library.';
-	$scope.addSongToPlaylist = "Add song to playlist"
+	$scope.songToPlaylist = "Add song to playlist"
 	$scope.whatPlaylist = 'Do you want to add a song to a playlist?';
 	$scope.songAdded = '';
 	$scope.songCollection = [];
@@ -50,7 +50,7 @@ $scope.searchPlaylist = function (term) {
         });
     };
 
-	$scope.addsong = function() {
+	$scope.addSong = function() {
 		$http({
 		url: '/api/songs',
 		method: 'POST',
@@ -70,42 +70,22 @@ $scope.searchPlaylist = function (term) {
 	$scope.inputGenre = "";
 	$scope.inputYoutubeUrl = "";
 
-	$http.get('/api/songs')
-	.success(function(data) {
-		$scope.songs = data;
-	})
-	.error(function(data) {
-		console.log('Error: ' + data);
-	});
 }
 
-	$scope.addToPlaylist = function() {
-		$http({
-		url: '/api/songs',
-		method: 'POST',
-		headers: { 'Content-Type': 'application/json' },
-		data: {
-			artist: $scope.inputArtist, 
-			title: $scope.inputTitle,
-			genre: $scope.inputGenre, 
-			url: $scope.inputYoutubeUrl}
-			});
-	/*
-	*		Inform user of song added and clear the fields
-	*/
-	$scope.songAdded = 'Song successfully added!';
-	$scope.inputArtist = "";
-	$scope.inputTitle  = "";
-	$scope.inputGenre = "";
-	$scope.inputYoutubeUrl = "";
+	$scope.addSongToPlaylist = function() {
+		return $http({
+			url: '/api/songs',
+			method: 'GET',
+			headers: { 'Content-Type': 'application/json' },
+			params : {
+				title: '7/11'
+			}
+		}).then(function (response) {
+		console.log(response.data[i].name);
+}
 
-	$http.get('/api/songs')
-	.success(function(data) {
-		$scope.songs = data;
-	})
-	.error(function(data) {
-		console.log('Error: ' + data);
-	});
+		$scope.inputTitleTypeahead = '';
+		$scope.inputPlaylistTypeahead = '';
 }
 
 
