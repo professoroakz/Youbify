@@ -59,7 +59,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="row in displayedCollection">
+			<tr ng-repeat="row in displayedCollection" ng-click="go(row)" class="repeat-animation">
 				<td>{{row.artist}}</td>
 				<td>{{row.title}}</td>
 				<td>{{row.genre}}</td>

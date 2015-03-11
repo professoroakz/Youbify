@@ -1,4 +1,4 @@
-angular.module('SongCtrl', ['ui.bootstrap', 'smart-table']).controller('SongController', function(Song, $scope, $http, $sce) {
+angular.module('SongCtrl', ['ui.bootstrap', 'smart-table', 'ngAnimate']).controller('SongController', function(Song, $scope, $http, $sce, $location) {
 
 	$scope.tagline = 'List of songs';
 	$scope.addSongHeader = 'Add new songs';
@@ -161,8 +161,12 @@ $scope.addSongToPlaylist = function (term) {
     .error(function(data) {
       console.log('Error: ' + data);
     });
-
   }
+
+  $scope.go = function(row){
+    console.log(row);
+    $location.path( "/songs/" +row._id);
+  };
 
 // WORKS FINE:::::::::
 
