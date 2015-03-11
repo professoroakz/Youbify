@@ -5,7 +5,6 @@ angular.module('PlaylistDetailCtrl', ['smart-table']).controller('PlaylistDetail
 	var idmatch = url.match(idregex);
 	var id = idmatch[1];
 
-    $scope.tagline = 'Here\'s yo mad playlists mon!';
  /*   $http.get('/api/playlists/'+id)
                 .success(function(data) {
                         $scope.playlist = data;
@@ -17,7 +16,7 @@ angular.module('PlaylistDetailCtrl', ['smart-table']).controller('PlaylistDetail
     var updateSongs = function(){
     $http.get('/api/playlists/'+id)
     .success(function(data) {
-        console.log(data);
+        $scope.tagline = data.name;
       $scope.rowCollection = data.playlistsongs;
     })
     .error(function(data) {

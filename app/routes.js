@@ -114,8 +114,6 @@ module.exports = function(app) {
             res.err(500);
             return;
         }
-        playlist.name = req.body.name;
-        playlist.id = req.body.id;
         res.json(playlist);
     });
     });
