@@ -15,7 +15,7 @@ angular.module('SongDetailCtrl', []).controller('SongDetailController', function
                         var url = data.url;
                         var idmatch = url.match(reg);
                         var id = idmatch[2];
-                        
+
                         url = "https://www.youtube.com/embed/" + id;
                 		$scope.url = $sce.trustAsResourceUrl(url);
                 })

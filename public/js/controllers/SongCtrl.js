@@ -166,6 +166,10 @@ $scope.addSongToPlaylist = function (term) {
     $location.path( "/songs/" +row._id);
   };
 
+  $scope.test = function(data){
+    console.log(data);
+  };
+
 // WORKS FINE:::::::::
 
 		// $http({
@@ -187,4 +191,15 @@ $scope.addSongToPlaylist = function (term) {
 
 
 
+})
+.filter('trustUrl', function ($sce) {
+  return function(url) {
+    var reg = /(watch\?v=|embed\/)([^\/]+)/;
+    var idmatch = url.match(reg);
+    var id = idmatch[2];
+
+    url = "https://www.youtube.com/embed/" + id;
+    console.log(url);
+    return $sce.trustAsResourceUrl(url);
+  };
 });
