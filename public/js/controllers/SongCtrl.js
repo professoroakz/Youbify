@@ -149,10 +149,6 @@ $scope.chooseSongToPlaylist = function (term) {
     $scope.songToPlaylistAdded = "Song added to playlist!";
     $scope.addSongToPlaylistVisible = true;
     $scope.addNewSongToPlaylistVisible = false;
-    // $scope.playlistsongs.splice(0,$scope.playlistsongs.length);
-    // $scope.playlistURL = '/api/playlists:';
-    // $scope.songID = '';
-    // $scope.playlistID = '';
 
 }
 
@@ -166,6 +162,8 @@ $scope.chooseSongToPlaylist = function (term) {
     $scope.chooseSongToPlaylistVisible = false;
     $scope.addNewSongToPlaylistVisible = true;
     $scope.songToPlaylistAdded = '';
+    $scope.inputPlaylistTypeahead = '';
+    $scope.inputTitleTypeahead = '';
   }
 
   var updateSongs = function(){
