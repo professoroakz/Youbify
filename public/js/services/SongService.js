@@ -25,6 +25,6 @@ angular.module('SongService', []).factory('Song', ['$http', function($http) {
             return $http.delete('/api/songs/' + id);
         }
 
-   }   
+    }       
 
 }]);
