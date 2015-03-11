@@ -136,10 +136,10 @@ $scope.addSongToPlaylist = function() {
     }
      });
 
-    $scope.playlistsongs.splice(0,$scope.playlistsongs.length);
-    $scope.playlistURL = '/api/playlists:';
-    $scope.songID = '';
-    $scope.playlistID = '';
+    // $scope.playlistsongs.splice(0,$scope.playlistsongs.length);
+    // $scope.playlistURL = '/api/playlists:';
+    // $scope.songID = '';
+    // $scope.playlistID = '';
 
 
 }
