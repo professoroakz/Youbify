@@ -1,4 +1,4 @@
-angular.module('SongCtrl', ['ui.bootstrap']).controller('SongController', function(Song, $scope, $http, $sce) {
+angular.module('SongCtrl', ['ui.bootstrap']).controller('SongController', function($scope, $http, $sce, $rootScope) {
 
 	$scope.tagline = 'List of songs';
 	$scope.addSongHeader = 'Add new songs';
@@ -79,7 +79,11 @@ $scope.searchPlaylist = function (term) {
 $scope.addSongToPlaylist = function (term) {
         // Get the ID for the song with a GET request for song
 
-        Song.get()
+        $http({
+            url: '/api/songs',
+            method: 'GET',
+        })
+
         .then(function (response) {
             for (var i = 0; i < response.data.length; i++) {
                 if(response.data[i].title === $scope.inputTitleTypeahead){
@@ -111,7 +115,7 @@ $scope.addSongToPlaylist = function (term) {
                 }
             }
      //       console.log("Playlist: " + playlistID[0]);//as expected
-        	$scope.playlistURL += $scope.playlistID[0];
+        	$rootScope.playlistURL += $scope.playlistID[0];
    //     	console.log(playlistURL);
 
         console.log("URL for playlist: " + $scope.playlistURL);
