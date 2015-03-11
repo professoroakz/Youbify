@@ -76,14 +76,22 @@
 						</div>
 						</form>
 					</br>
+					<p ng-hide="chooseSongToPlaylistVisible">
 					<input type="submit" id="submit" class="btn btn-danger" value="Choose song and playlist" />
+					</p>
 					<p>{{songAdded}}</p>
 
 </div>
 </form>
 
-<button class="btn btn-primary" ng-click="addSongToPlaylist()" value="">Add song to the selected playlist</button>
+<p ng-hide="addSongToPlaylistVisible">
+<button  class="btn btn-primary" ng-click="addSongToPlaylist()" value="">Add song to the selected playlist</button>
+<p>{{songToPlaylistAdded}}</p>
+</p>
 
+<p ng-hide="addNewSongToPlaylistVisible">
+<button  class="btn btn-warning" ng-click="addNewSongToPlaylist()" value="">Add a new song</button>
+</p>
 </div>
 
 
