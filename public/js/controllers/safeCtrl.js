@@ -1,11 +1,11 @@
-angular.module('safeCtrl', ['smart-table']).controller('safeController', ['$scope', function ($scope) {
+angular.module('SafeCtrl', ['smart-table']).controller('SafeController', function ($scope, $http) {
 
 
     var firstnames = ['Laurent', 'Blandine', 'Olivier', 'Max'];
     var lastnames = ['Renard', 'Faivre', 'Frere', 'Eponge'];
     var dates = ['1987-05-21', '1987-04-25', '1955-08-27', '1966-06-06'];
     var id = 1;
-
+/*
     function generateRandomItem(id) {
 
         var firstname = firstnames[Math.floor(Math.random() * 3)];
@@ -20,7 +20,7 @@ angular.module('safeCtrl', ['smart-table']).controller('safeController', ['$scop
             birthDate: new Date(birthdate),
             balance: balance
         }
-    }
+    } 
 
     $scope.rowCollection = [];
 
@@ -43,5 +43,34 @@ angular.module('safeCtrl', ['smart-table']).controller('safeController', ['$scop
         if (index !== -1) {
             $scope.rowCollection.splice(index, 1);
         }
+    } */
+    $http.get('/api/songs')
+    .success(function(data) {
+        $scope.rowCollection = data;
+        console.log(data);
+
+    })
+    .error(function(data) {
+        console.log('Error: ' + data);
+    });
+
+    $scope.displayedCollection = [].concat($scope.rowCollection);
+
+    $scope.removeItem = function removeItem(row) {
+        var index = $scope.rowCollection.indexOf(row);
+        if (index !== -1) {
+            $scope.rowCollection.splice(index, 1);
+        }
+
+        $http.delete('/api/songs/' + row._id)
+        .success(function(data) {
+            console.log("succesfully deleted" + row._id)
+            console.log(data);
+
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+
     }
-}]);
+});

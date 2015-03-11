@@ -23,7 +23,7 @@ angular.module('paginationCtrl', ['smart-table']).controller('paginationControll
 		scope.itemsByPage=15;
 
     scope.rowCollection = [];
-    for (var j = 0; j < 200; j++) {
+    for (var j = 0; j < 50; j++) {
         scope.rowCollection.push(createRandomItem());
     }
 }]);

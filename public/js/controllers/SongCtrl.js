@@ -1,4 +1,4 @@
-angular.module('SongCtrl', ['ui.bootstrap']).controller('SongController', function(Song, $scope, $http, $sce) {
+angular.module('SongCtrl', ['ui.bootstrap', 'smart-table']).controller('SongController', function(Song, $scope, $http, $sce) {
 
 	$scope.tagline = 'List of songs';
 	$scope.addSongHeader = 'Add new songs';
