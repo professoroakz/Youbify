@@ -155,7 +155,6 @@ $scope.addSongToPlaylist = function (term) {
     $http.delete('/api/songs/' + row._id)
     .success(function(data) {
       console.log("succesfully deleted" + row._id)
-      console.log(data);
 
     })
     .error(function(data) {
@@ -164,7 +163,6 @@ $scope.addSongToPlaylist = function (term) {
   }
 
   $scope.go = function(row){
-    console.log(row);
     $location.path( "/songs/" +row._id);
   };
 

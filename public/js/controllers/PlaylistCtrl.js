@@ -6,7 +6,6 @@ angular.module('PlaylistCtrl', []).controller('PlaylistController', function($sc
     
     $http.get('/api/playlists')
     .success(function(data) {
-       console.log(data);
        $scope.playlists = data;
    })
     .error(function(data) {
@@ -36,7 +35,6 @@ angular.module('PlaylistCtrl', []).controller('PlaylistController', function($sc
 
     $http.get('/api/playlists')
     .success(function(data) {
-       console.log(data);
        $scope.playlists = data;
    })
     .error(function(data) {

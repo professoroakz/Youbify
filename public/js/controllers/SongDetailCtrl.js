@@ -10,7 +10,14 @@ angular.module('SongDetailCtrl', []).controller('SongDetailController', function
                 		$scope.title = data.title;
                 		$scope.artist = data.artist;
                 		$scope.genre = data.genre;
-                		$scope.url = $sce.trustAsResourceUrl(data.url);
+
+                        var reg = /(watch\?v=|embed\/)([^\/]+)/;
+                        var url = data.url;
+                        var idmatch = url.match(reg);
+                        var id = idmatch[2];
+                        
+                        url = "https://www.youtube.com/embed/" + id;
+                		$scope.url = $sce.trustAsResourceUrl(url);
                 })
                 .error(function(data) {
                         console.log('Error: ' + data);
