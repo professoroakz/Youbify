@@ -11,7 +11,7 @@
       <div class="form-group">
         <label for="inputPlaylistName" class="col-sm-2 control-label">Name</label>
         <div class="col-sm-10" id="inputPlaylistName">
-          <input type="name" class="form-control" ng-model="inputPlaylistName" placeholder="For example 'Get crazy', 'Chill programming', 'Let's do this'...">
+          <input type="name" class="form-control" ng-model="inputPlaylistName" placeholder="For example 'Get crazy', 'Chill programming', 'Let's do this'..." required>
         </div>
       </div>
 
@@ -19,7 +19,7 @@
         <div class="form-group">
           <label for="inputPlaylistGenre" class="col-sm-2 control-label">Genre</label>
           <div class="col-sm-10" id="inputPlaylistGenre">
-            <input type="genre" class="form-control" ng-model="inputPlaylistGenre" placeholder="For example 'House', 'Pop', 'Trap'...">
+            <input type="genre" class="form-control" ng-model="inputPlaylistGenre" placeholder="For example 'House', 'Pop', 'Trap'..." required>
           </div>
         </div>
 
@@ -27,12 +27,12 @@
           <div class="form-group">
             <label for="inputPlaylistMood" class="col-sm-2 control-label">Mood</label>
             <div class="col-sm-10" id="inputPlaylistMood">
-              <input type="mood" class="form-control" ng-model="inputPlaylistMood" placeholder="For example 'Happy', 'Chill', 'Hype'...">
+              <input type="mood" class="form-control" ng-model="inputPlaylistMood" placeholder="For example 'Happy', 'Chill', 'Hype'..." required>
             </div>
           </div>
 
           <!-- Ridiculously many newlines for marginal difference -->
-        </br> </br> </br> </br> </br> </br> </br> </br>
+        </br> </br> </br> </br> </br> </br> 
 
         <input type="submit" id="submit" class="btn btn-primary" value="Create new playlist" />
         <p>{{playlistAdded}}</p>
