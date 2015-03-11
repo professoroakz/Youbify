@@ -166,31 +166,13 @@ $scope.addSongToPlaylist = function (term) {
     $location.path( "/songs/" +row._id);
   };
 
-  $scope.test = function(data){
-    console.log(data);
+  $scope.play = function(row){
+    console.log(row);
+    var index = $scope.rowCollection.indexOf(row);
+    console.log(index);
+    $scope.rowCollection[index].video = "asd";
+    console.log($scope.rowCollection[index].video);
   };
-
-// WORKS FINE:::::::::
-
-		// $http({
-		// url: '/api/playlists/54f8b46c3a1ca934f4dae6f7',
-		// method: 'PATCH',
-		// data: {
-		// playlistsongs : ['54f88ee4a4d57da8bec141ce']
-		// }
-		// 	});
-
-//                 $http({
-//         	url: '/api/playlists/:' + playlistID
-//         	method: 'PATCH',
-// 		data: {
-// 			playlistsongs: [songID[0]]
-// 		}
-// };
-
-
-
-
 })
 .filter('trustUrl', function ($sce) {
   return function(url) {
