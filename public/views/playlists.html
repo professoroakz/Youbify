@@ -44,7 +44,7 @@
         <input type="submit" id="submit" class="btn btn-primary" value="Create new playlist" />
         <p>{{playlistAdded}}</p>
 
-</form>
+      </form>
 
 
 
@@ -54,7 +54,7 @@
         <h1>List of all playslists</h1>
 
         <p>{{ tagline }}</p>
-
+<!--
         <table class='table table-bordered'>
           <caption>PLAYLISTS</caption>
           <thead>
@@ -67,6 +67,33 @@
            <td>{{x.genre}}</td>
            <td>{{x.mood}}</td>
          </tr>
-       </table> 
-     </div>
-   </div>
+       </table>  -->
+
+       <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+        <thead>
+          <tr>
+          <th st-sort="name">Name</th>
+            <th st-sort="genre">Genre</th>
+            <th st-sort="mood">Mood</th>
+          </tr>
+          <tr>
+            <th colspan="5"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in displayedCollection" ng-click="go(row)" class="repeat-animation">
+            <td>{{row.name}}</td>
+            <td>{{row.genre}}</td>
+            <td>{{row.mood}}</td>
+            <td>
+          <button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
+            <i class="glyphicon glyphicon-remove-circle">
+            </i>
+          </button>
+        </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
