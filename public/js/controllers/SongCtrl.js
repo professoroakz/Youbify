@@ -11,6 +11,11 @@ angular.module('SongCtrl', ['ui.bootstrap', 'smart-table', 'ngAnimate']).control
   $scope.songID = '';
   $scope.playlistID = '';
   $scope.playlistsongs = [];
+  $scope.songToPlaylistAdded = '';
+
+  $scope.chooseSongToPlaylistVisible = false;
+  $scope.addSongToPlaylistVisible = true;
+  $scope.addNewSongToPlaylistVisible = true;
 
   $http.get('/api/songs')
   .success(function(data) {
@@ -123,10 +128,15 @@ $scope.chooseSongToPlaylist = function (term) {
    console.log("PlaylistID: " + $scope.playlistID);
    console.log("Song ID: " + $scope.songID);
    console.log("Playlistsongs: " + $scope.playlistsongs);
-
+   $scope.addSongToPlaylistVisible = false;
+   $scope.chooseSongToPlaylistVisible = true;
  });
 
-$scope.addSongToPlaylist = function() {
+    //    console.log("Song ID: " + $scope.songID);
+    //    console.log("Playlistsongs index 0: " + $scope.playlistsongs[0]);
+  }
+
+  $scope.addSongToPlaylist = function() {
 
     $http({
     url: '/api/playlists/' + $scope.playlistID,
@@ -136,17 +146,26 @@ $scope.addSongToPlaylist = function() {
     }
      });
 
+    $scope.songToPlaylistAdded = "Song added to playlist!";
+    $scope.addSongToPlaylistVisible = true;
+    $scope.addNewSongToPlaylistVisible = false;
     // $scope.playlistsongs.splice(0,$scope.playlistsongs.length);
     // $scope.playlistURL = '/api/playlists:';
     // $scope.songID = '';
     // $scope.playlistID = '';
 
-
 }
 
+  $scope.addNewSongToPlaylist = function() {
 
-    //    console.log("Song ID: " + $scope.songID);
-    //    console.log("Playlistsongs index 0: " + $scope.playlistsongs[0]);
+    $scope.playlistURL = '/api/playlists:';
+    $scope.songID = '';
+    $scope.playlistID = '';
+    $scope.playlistsongs.length = 0;
+    $scope.songToPlaylistAdded = '';
+    $scope.chooseSongToPlaylistVisible = false;
+    $scope.addNewSongToPlaylistVisible = true;
+    $scope.songToPlaylistAdded = '';
   }
 
   var updateSongs = function(){
