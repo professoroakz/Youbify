@@ -1,8 +1,7 @@
 angular.module('MainCtrl', []).controller('MainController', function($scope, $window, $rootScope) {
 
 	$scope.header = "Welcome to Youbify!"
-  $scope.tagline = 'Tired of not finding your songs on Spotify?';
-  $scope.smalltext = 'Youbify enables you to create playlists and add songs from youtube for instant playback!';
-  $scope.registertext = 'To use Youbify, please log in or register';
-  $scope.loggedintext = 'You are logged in! Go crazy tiger'
+ 	$scope.tagline = 'Tired of not finding your songs on Spotify?';
+  	$scope.smalltext = 'Youbify enables you to create playlists and add songs from youtube for instant playback!';
+
 });

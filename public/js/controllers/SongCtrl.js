@@ -139,18 +139,18 @@ $scope.chooseSongToPlaylist = function (term) {
   $scope.addSongToPlaylist = function() {
 
     $http({
-    url: '/api/playlists/' + $scope.playlistID,
-    method: 'PATCH',
-    data: {
-    playlistsongs : $scope.playlistsongs
-    }
-     });
+      url: '/api/playlists/' + $scope.playlistID,
+      method: 'PATCH',
+      data: {
+        playlistsongs : $scope.playlistsongs
+      }
+    });
 
     $scope.songToPlaylistAdded = "Song added to playlist!";
     $scope.addSongToPlaylistVisible = true;
     $scope.addNewSongToPlaylistVisible = false;
 
-}
+  }
 
   $scope.addNewSongToPlaylist = function() {
 
