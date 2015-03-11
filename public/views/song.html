@@ -3,7 +3,7 @@
 	<p>{{addSongTagline}}</p>
 </br>
 <!-- Input fields for playlist -->
-<form name="songForm" ng-submit="addSong()">
+<form name="songForm" ng-submit="chooseSongToPlaylist()">
 
 	<form class="form-horizontal">
 		<div class="form-group">
@@ -50,7 +50,7 @@
 		<h1>{{songToPlaylist}}</h1>
 		<p>{{whatPlaylist}}</p>
 
-<form name="addSongToPlaylistForm" ng-submit="addSongToPlaylist()">
+<form name="addSongToPlaylistForm" ng-submit="chooseSongToPlaylist()">
 		<div class='container-fluid'>
 			<pre>Song: {{inputTitleTypeahead | json}} Playlist: {{inputPlaylistTypeahead | json}} </pre>
 			<!-- Song -->
@@ -76,8 +76,13 @@
 						</div>
 						</form>
 					</br>
-					<input type="submit" id="submit" class="btn btn-primary" value="Add song to playlist" />
+					<input type="submit" id="submit" class="btn btn-danger" value="Choose song and playlist" />
 					<p>{{songAdded}}</p>
+
+</div>
+</form>
+
+<button class="btn btn-primary" ng-click="addSongToPlaylist()" value="">Add song to the selected playlist</button>
 
 </div>
 

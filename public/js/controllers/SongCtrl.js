@@ -76,7 +76,7 @@ angular.module('SongCtrl', ['ui.bootstrap', 'smart-table', 'ngAnimate']).control
 }
 
 
-$scope.addSongToPlaylist = function (term) {
+$scope.chooseSongToPlaylist = function (term) {
         // Get the ID for the song with a GET request for song
 
         $http({
@@ -115,16 +115,34 @@ $scope.addSongToPlaylist = function (term) {
           }
         }
      //       console.log("Playlist: " + playlistID[0]);//as expected
-     $rootScope.playlistURL += $scope.playlistID[0];
+     $scope.playlistURL += $scope.playlistID;
+     $scope.playlistsongs.push($scope.songID.toString());
    //     	console.log(playlistURL);
 
    console.log("URL for playlist: " + $scope.playlistURL);
    console.log("PlaylistID: " + $scope.playlistID);
    console.log("Song ID: " + $scope.songID);
-   console.log("Playlistsongs index 0: " + $scope.playlistsongs);
+   console.log("Playlistsongs: " + $scope.playlistsongs);
 
  });
 
+$scope.addSongToPlaylist = function() {
+
+    $http({
+    url: '/api/playlists/' + $scope.playlistID,
+    method: 'PATCH',
+    data: {
+    playlistsongs : $scope.playlistsongs
+    }
+     });
+
+    // $scope.playlistsongs.splice(0,$scope.playlistsongs.length);
+    // $scope.playlistURL = '/api/playlists:';
+    // $scope.songID = '';
+    // $scope.playlistID = '';
+
+
+}
 
 
     //    console.log("Song ID: " + $scope.songID);
@@ -174,6 +192,8 @@ $scope.addSongToPlaylist = function (term) {
     console.log($scope.rowCollection[index].video);
   };
 })
+// Filter to get all the URL's working, through SCE.
+
 .filter('trustUrl', function ($sce) {
   return function(url) {
     var reg = /(watch\?v=|embed\/)([^\/]+)/;
