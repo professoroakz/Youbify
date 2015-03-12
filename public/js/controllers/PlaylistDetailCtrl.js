@@ -23,36 +23,36 @@ angular.module('PlaylistDetailCtrl', ['smart-table', 'xeditable']).controller('P
   updateSongs();
 
   $scope.removeItem = function removeItem(row) {
-  var index = $scope.rowCollection.indexOf(row);
-  if (index !== -1) {
-    $scope.rowCollection.splice(index, 1);
-  }
+    var index = $scope.rowCollection.indexOf(row);
+    if (index !== -1) {
+      $scope.rowCollection.splice(index, 1);
+    }
 
-  $http.delete('/api/songs/' + row._id)
-  .success(function(data) {
-    console.log("succesfully deleted" + row._id)
-    updateSongs();
-  })
-  .error(function(data) {
-    console.log('Error: ' + data);
-  });
-};
+    $http.delete('/api/songs/' + row._id)
+    .success(function(data) {
+      console.log("succesfully deleted" + row._id)
+      updateSongs();
+    })
+    .error(function(data) {
+      console.log('Error: ' + data);
+    });
+  };
 
-$scope.goToSong = function(row){
-  $location.path( "/songs/" +row._id);
-};
+  $scope.goToSong = function(row){
+    $location.path( "/songs/" +row._id);
+  };
 
   $scope.updatePlaylist = function() {
+    console.log(id);
     $http({
       url: '/api/playlists/' + id,
-      method: 'PUT',
+      method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       data: {
        name: $scope.name, 
        mood: $scope.mood,
-       genre: $scope.genre,
-       playlistsongs: $scope.rowCollection
+       genre: $scope.genre
      }
-     });
+   });
   };
 });

@@ -7,114 +7,94 @@
 
 	<form class="form-horizontal">
 		<div class="form-group">
-		<!-- Artist -->
+			<!-- Artist -->
 			<label for="inputArtist" class="col-sm-2 control-label">Artist</label>
 			<div class="col-sm-10" id="inputArtist">
 				<input type="artist" class="form-control" ng-model="inputArtist" placeholder="For example 'Jack Ü', 'Kiesza', 'Dillon Francis'..." required>
 			</div>
-		<!-- Title -->
+			<!-- Title -->
 			<div class="form-group">
 				<label for="inputTitle" class="col-sm-2 control-label">Title</label>
 				<div class="col-sm-10" id="inputTitle">
 					<input type="title" class="form-control" ng-model="inputTitle" placeholder="For example 'You Know You Like It', 'Get Lucky', 'Outside'..." required>
 				</div>
 			</div>
-		<!-- Genre -->
-				<div class="form-group">
-					<label for="inputGenre" class="col-sm-2 control-label">Genre</label>
-					<div class="col-sm-10" id="inputGenre">
-						<input type="genre" class="form-control" ng-model="inputGenre" placeholder="For example 'Deep House', 'Pop', 'RnB'..." required>
-					</div>
+			<!-- Genre -->
+			<div class="form-group">
+				<label for="inputGenre" class="col-sm-2 control-label">Genre</label>
+				<div class="col-sm-10" id="inputGenre">
+					<input type="genre" class="form-control" ng-model="inputGenre" placeholder="For example 'Deep House', 'Pop', 'RnB'..." required>
 				</div>
-		<!-- Link -->
-				<div class="form-group">
-					<label for="inputYoutubeUrl" class="col-sm-2 control-label">YouTube URL</label>
-					<div class="col-sm-10" id="inputYoutubeUrl">
-						<input type="url" class="form-control" ng-model="inputYoutubeUrl" placeholder="/embed/ for MAX result, https://www.youtube.com/embed/5NV6Rdv1a3I" required>
-					</div>
-				</div>
-		</div>
-		</form>
-					<!-- Ridiculously many newlines for marginal -->
-				</br> </br> </br> </br> </br> </br> </br> </br>
-
-				<input type="submit" id="submit" class="btn btn-primary" value="Add song to library" />
-				<p>{{songAdded}}</p>
-			</br>
-
-
-			<li class="divider"></li>
-			<h1>{{editSong}}</h1>
-<!-- 	
-				<form class="form-horizontal">
-					<div class="form-group">
-						<label for="inputTitleTypeahead" class="col-sm-2 control-label">Song title</label>
-						<div class="col-sm-10" id="inputTitleTypeahead">
-							<input id="inputTitleTypeahead" type="text" ng-model="inputTitleTypeahead" typeahead="song.artist for song in songs | filter:$viewValue | limitTo:8" typeahead-editable="false" class="form-control" placeholder="Input a song name.." required >
-						</div>
-						<div class="col-sm-10" id="inputArtistTypeahead">
-							<input id="inputArtistTypeahead" type="text" ng-model="inputArtistTypeahead" typeahead="song.title for song in songs | filter:$viewValue | limitTo:8" typeahead-editable="false" class="form-control" placeholder="Input a song name.." required >
-						</div>
-
-						<div class="col-sm-10" id="inputGenreTypeahead">
-							<input id="inputGenreTypeahead" type="text" ng-model="inputGenreTypeahead" typeahead="song.genre for song in songs | filter:$viewValue | limitTo:8" typeahead-editable="false" class="form-control" placeholder="Input a song name.." required >
-					</div>
-		</form>
-
- -->
-		<li class="divider"></li>
-		<!-- Playlist stuff -->
-		<h1>{{songToPlaylist}}</h1>
-		<p>{{whatPlaylist}}</p>
-
-
-		<form name="addSongToPlaylistForm" ng-submit="chooseSongToPlaylist()">
-			<div class='container-fluid'>
-				<pre>Song: {{inputTitleTypeahead | json}} Playlist: {{inputPlaylistTypeahead | json}} </pre>
-				<!-- Song -->
-				<form class="form-horizontal">
-					<div class="form-group">
-					</div>
-				</form>
-				<!-- Song -->
-				<form class="form-horizontal">
-					<div class="form-group">
-						<label for="inputTitleTypeahead" class="col-sm-2 control-label">Song title</label>
-						<div class="col-sm-10" id="inputTitleTypeahead">
-							<input id="inputTitleTypeahead" type="text" ng-model="inputTitleTypeahead" typeahead="song.title for song in songs | filter:$viewValue | limitTo:8" typeahead-editable="false" class="form-control" placeholder="Input a song name.." required >
-						</div>						
-					</div>
-					<div class="form-group">
-						<label for="inputPlaylistTypeahead" class="col-sm-2 control-label">Playlist title</label>
-						<div class="col-sm-10" id="inputPlaylistTypeahead">
-							<input id="inputPlaylistTypeahead" type="text" ng-model="inputPlaylistTypeahead" typeahead="song for song in searchPlaylist($searchPlaylist)" typeahead-editable="false" class="form-control" placeholder="Input a playlist name.." required >
-						</div>						
-					</div>
-				</form>
-
-<!-- 				<div class="col-sm-10" id="inputPlaylistTypeahead" ng-controller="SongController">
-								<input id="inputPlaylistTypeahead" type="text" ng-controller="PlaylistController" ng-model="inputPlaylistTypeahead" typeahead="p.name for p in playlists | filter:$viewValue" typeahead-editable="false" class="form-control" placeholder="Input a playlist name.." required >
-							</div>	 -->
-
-						</br>
-						<p ng-hide="chooseSongToPlaylistVisible">
-							<input type="submit" id="submit" class="btn btn-danger" value="Choose song and playlist" />
-						</p>
-
-					</div>
-				</form>
-
-				<p ng-hide="addSongToPlaylistVisible">
-					<button  class="btn btn-primary" ng-click="addSongToPlaylist()" value="">Add song to the selected playlist</button>
-					<p>{{songToPlaylistAdded}}</p>
-				</p>
-
-				<p ng-hide="addNewSongToPlaylistVisible">
-					<button  class="btn btn-warning" ng-click="addNewSongToPlaylist()" value="">Add a new song</button>
-				</p>
-
-
 			</div>
+			<!-- Link -->
+			<div class="form-group">
+				<label for="inputYoutubeUrl" class="col-sm-2 control-label">YouTube URL</label>
+				<div class="col-sm-10" id="inputYoutubeUrl">
+					<input type="url" class="form-control" ng-model="inputYoutubeUrl" placeholder="/embed/ for MAX result, https://www.youtube.com/embed/5NV6Rdv1a3I" required>
+				</div>
+			</div>
+		</div>
+	</form>
+	<!-- Ridiculously many newlines for marginal -->
+</br> </br> </br> </br> </br> </br> </br> </br>
+
+<input type="submit" id="submit" class="btn btn-primary" value="Add song to library" />
+<p>{{songAdded}}</p>
+</br>
+
+
+<li class="divider"></li>
+<h1>{{editSong}}</h1>
+
+<li class="divider"></li>
+<!-- Playlist stuff -->
+<h1>{{songToPlaylist}}</h1>
+<p>{{whatPlaylist}}</p>
+
+
+<form name="addSongToPlaylistForm" ng-submit="chooseSongToPlaylist()">
+	<div class='container-fluid'>
+		<pre>Song: {{inputTitleTypeahead | json}} Playlist: {{inputPlaylistTypeahead | json}} </pre>
+		<!-- Song -->
+		<form class="form-horizontal">
+			<div class="form-group">
+			</div>
+		</form>
+		<!-- Song -->
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label for="inputTitleTypeahead" class="col-sm-2 control-label">Song title</label>
+				<div class="col-sm-10" id="inputTitleTypeahead">
+					<input id="inputTitleTypeahead" type="text" ng-model="inputTitleTypeahead" typeahead="song.title for song in songs | filter:$viewValue | limitTo:8" typeahead-editable="false" class="form-control" placeholder="Input a song name.." required >
+				</div>						
+			</div>
+			<div class="form-group">
+				<label for="inputPlaylistTypeahead" class="col-sm-2 control-label">Playlist title</label>
+				<div class="col-sm-10" id="inputPlaylistTypeahead">
+					<input id="inputPlaylistTypeahead" type="text" ng-model="inputPlaylistTypeahead" typeahead="song for song in searchPlaylist($searchPlaylist)" typeahead-editable="false" class="form-control" placeholder="Input a playlist name.." required >
+				</div>						
+			</div>
+		</form>
+
+	</br>
+	<p ng-hide="chooseSongToPlaylistVisible">
+		<input type="submit" id="submit" class="btn btn-danger" value="Choose song and playlist" />
+	</p>
+
+</div>
+</form>
+
+<p ng-hide="addSongToPlaylistVisible">
+	<button  class="btn btn-primary" ng-click="addSongToPlaylist()" value="">Add song to the selected playlist</button>
+	<p>{{songToPlaylistAdded}}</p>
+</p>
+
+<p ng-hide="addNewSongToPlaylistVisible">
+	<button  class="btn btn-warning" ng-click="addNewSongToPlaylist()" value="">Add a new song</button>
+</p>
+
+
+</div>
 
 
 
@@ -122,7 +102,7 @@
 	<!-- Input fields for playlist -->
 	<table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
 		<thead>
-		<h1>{{yourLibrary}}</h1>
+			<h1>{{yourLibrary}}</h1>
 			<tr>
 				<th st-sort="artist">Artist</th>
 				<th st-sort="title">Title</th>

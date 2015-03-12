@@ -46,7 +46,6 @@ module.exports = function(app) {
             song.artist = req.body.artist;
             song.title = req.body.title;
             song.genre = req.body.genre;
-            song.date = req.body.date;
             song.url = req.body.url;
 
             // if there is an error retrieving, send the error. 
@@ -59,6 +58,32 @@ module.exports = function(app) {
         });
         });
     });
+
+        // route for update
+    app.patch('/api/songs/:song_id', function(req, res) {
+        Song.findById(req.params.playlist_id, function(err, song) {
+            if (req.body.artist) {
+                song.artist = req.body.artist;
+            }
+            if (req.body.title) {
+                song.title = req.body.title;
+            }
+            if (req.body.genre) {
+                song.genre = req.body.genre;
+            }
+            if (req.body.url) {
+                song.url = req.body.url;
+            }
+
+            song.save(function(err) {
+                if(err) {
+                    res.err(500);
+                    return;
+                }
+                res.json(song);
+            });
+        })
+});
 
     // route for delete
     app.delete('/api/songs/:song_id', function(req, res) {
@@ -127,6 +152,12 @@ module.exports = function(app) {
             if (req.body.name) {
                 playlist.name = req.body.name;
             }
+            if (req.body.mood) {
+                playlist.mood = req.body.mood;
+            }
+            if (req.body.genre) {
+                playlist.genre = req.body.genre;
+            }
 
             playlist.save(function(err) {
                 if(err) {
@@ -136,34 +167,6 @@ module.exports = function(app) {
                 res.json(playlist);
             });
         })
-        // Playlist.findById(req.params.playlist_id, function(err, playlist) {
-        //     if(err)
-        //         res.send(err);
-
-        //     playlist.name = req.body.name;
-        //     playlist.id = req.body.id;
-
-        // Playlist.findById(req.params.playlist_id)
-        // .populate('playlistsongs')
-        // .exec(function (err, playlist) {
-        //   if(err) {
-        //     res.err(500);
-        //     return;
-        //   }
-
-        //   playlist.name = req.body.name;
-        //   playlist.id = req.body.id;
-        //   res.json(playlist);
-        // });
-        //     // if there is an error retrieving, send the error. 
-        //     // nothing after res.send(err) will execute
-        //     playlist.save(function(err) {
-        //         if (err)
-        //             res.send(err);
-
-        //     res.json(playlist); // return all playlists in JSON format
-        //     });
-        // });
 });
 
     // route for delete
