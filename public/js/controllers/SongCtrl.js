@@ -6,6 +6,7 @@ angular.module('SongCtrl', ['ui.bootstrap', 'smart-table', 'ngAnimate']).control
 	$scope.songToPlaylist = "Add song to playlist"
 	$scope.whatPlaylist = 'Do you want to add a song to a playlist?';
   $scope.yourLibrary = 'Library';
+  $scope.editSong = 'Edit a song';
 	$scope.songAdded = '';
 	$scope.songCollection = [];
   $scope.playlistURL = '/api/playlists:';
