@@ -1,6 +1,9 @@
 <div class="jumbotron text-center">
+	<h2> Name </h2>
 	<p><a href="#" editable-text="name" onaftersave="updatePlaylist()">{{ name || 'empty' }}</a></p>
+	<h2> Genre </h2>
 	<p><a href="#" editable-text="genre" onaftersave="updatePlaylist()">{{ genre || 'empty' }}</a></p>
+	<h2> Mood </h2>
 	<p><a href="#" editable-text="mood" onaftersave="updatePlaylist()">{{ mood || 'empty' }}</a></p>
 	<ng-include src="'views/songSmartTablePartial.html'"></ng-include>
 </div>

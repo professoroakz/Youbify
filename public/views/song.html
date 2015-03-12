@@ -62,7 +62,6 @@
 		</form>
 
  -->
-		<li class="divider"></li>
 		<!-- Playlist stuff -->
 		<h1>{{songToPlaylist}}</h1>
 		<p>{{whatPlaylist}}</p>
@@ -70,7 +69,7 @@
 
 		<form name="addSongToPlaylistForm" ng-submit="chooseSongToPlaylist()">
 			<div class='container-fluid'>
-				<pre>Song: {{inputTitleTypeahead | json}} Playlist: {{inputPlaylistTypeahead | json}} </pre>
+				<!--<pre>Song: {{inputTitleTypeahead | json}} Playlist: {{inputPlaylistTypeahead | json}} </pre>-->
 				<!-- Song -->
 				<form class="form-horizontal">
 					<div class="form-group">
@@ -124,8 +123,8 @@
 		<thead>
 		<h1>{{yourLibrary}}</h1>
 			<tr>
-				<th st-sort="artist">Artist</th>
 				<th st-sort="title">Title</th>
+				<th st-sort="artist">Artist</th>
 				<th st-sort="genre">Genre</th>
 				<th>Video</th>
 				<th>Go to</th>
@@ -137,8 +136,8 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="row in displayedCollection" class="repeat-animation">
+				<td ng-click="goToSong(row)">{{row.title}}</td>
 				<td>{{row.artist}}</td>
-				<td>{{row.title}}</td>
 				<td>{{row.genre}}</td>
 				<td><iframe ob-lazytube width="420" height="170" src="{{row.url | trustUrl}}" frameborder="0" allowfullscreen></iframe></td>
 				<td>

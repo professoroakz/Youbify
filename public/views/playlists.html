@@ -59,7 +59,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="row in displayedCollection" class="repeat-animation">
-            <td>{{row.name}}</td>
+            <td ng-click="goToPlaylist(row)">{{row.name}}</td>
             <td>{{row.genre}}</td>
             <td>{{row.mood}}</td>
         <td>

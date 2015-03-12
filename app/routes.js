@@ -145,16 +145,17 @@ module.exports = function(app) {
     // route for update
     app.patch('/api/playlists/:playlist_id', function(req, res) {
         Playlist.findById(req.params.playlist_id, function(err, playlist) {
-            if (req.body.playlistsongs) {
+            console.log(req.body);
+            if (req.body.playlistsongs != null) {
                 playlist.playlistsongs = req.body.playlistsongs;
             }
-            if (req.body.name) {
+            if (req.body.name != null) {
                 playlist.name = req.body.name;
             }
-            if (req.body.mood) {
+            if (req.body.mood != null) {
                 playlist.mood = req.body.mood;
             }
-            if (req.body.genre) {
+            if (req.body.genre != null) {
                 playlist.genre = req.body.genre;
             }
 
