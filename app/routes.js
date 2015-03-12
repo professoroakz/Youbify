@@ -38,7 +38,7 @@ module.exports = function(app) {
     });
 
     // route for update
-    app.put('/api/songs/:song_id', function(req, res) {
+/*    app.put('/api/songs/:song_id', function(req, res) {
         Song.findById(req.params.song_id, function(err, song) {
             if(err)
                 res.send(err);
@@ -57,7 +57,7 @@ module.exports = function(app) {
             res.json(song); // return all songs in JSON format
         });
         });
-    });
+    }); */
 
         // route for update
     app.patch('/api/songs/:song_id', function(req, res) {
@@ -104,7 +104,6 @@ module.exports = function(app) {
         song.artist = req.body.artist;
         song.title = req.body.title;
         song.genre = req.body.genre;
-        song.date = req.body.date;
         song.url = req.body.url;
 
         song.save(function(err) {
