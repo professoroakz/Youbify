@@ -1,6 +1,4 @@
 angular.module('PlaylistCtrl', ['smart-table']).controller('PlaylistController', function($scope, $http, $location) {
-
-    $scope.tagline = 'Here\'s yo mad playlists mon!';
     $scope.createPlaylistTagLine = 'Create a new playlist';
     $scope.playlistAdded = '';
     
