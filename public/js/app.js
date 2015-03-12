@@ -5,7 +5,6 @@
 angular.module('Youbify', 
 	['ngRoute',
 	'ngMessages',
-	'NavbarCtrl',
 	'appRoutes', 
 	'smart-table',
 	'MainCtrl', 
