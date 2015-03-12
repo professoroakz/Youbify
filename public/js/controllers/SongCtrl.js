@@ -55,7 +55,7 @@ angular.module('SongCtrl', ['ui.bootstrap', 'smart-table', 'ngAnimate', 'oblador
   $scope.addSong = function() {
     $http({
       url: '/api/songs',
-      method: 'PATCH',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       data: {
        artist: $scope.inputArtist, 
