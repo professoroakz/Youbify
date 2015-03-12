@@ -19,15 +19,6 @@ angular.module('SongCtrl', ['ui.bootstrap', 'smart-table', 'ngAnimate', 'oblador
   $scope.addSongToPlaylistVisible = true;
   $scope.addNewSongToPlaylistVisible = true;
 
-  $http.get('/api/songs')
-  .success(function(data) {
-    $scope.songs = data;
-
-  })
-  .error(function(data) {
-    console.log('Error: ' + data);
-  });
-
   $scope.searchSong = function (term) {
     return $http({
       url: '/api/songs',
