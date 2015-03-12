@@ -36,42 +36,20 @@ module.exports = function(app) {
             res.json(song); // return all songs in JSON format
         });
     });
-
-    // route for update
-/*    app.put('/api/songs/:song_id', function(req, res) {
-        Song.findById(req.params.song_id, function(err, song) {
-            if(err)
-                res.send(err);
-
-            song.artist = req.body.artist;
-            song.title = req.body.title;
-            song.genre = req.body.genre;
-            song.url = req.body.url;
-
-            // if there is an error retrieving, send the error. 
-            // nothing after res.send(err) will execute
-            song.save(function(err) {
-                if (err)
-                    res.send(err);
-
-            res.json(song); // return all songs in JSON format
-        });
-        });
-    }); */
-
-        // route for update
+    
     app.patch('/api/songs/:song_id', function(req, res) {
-        Song.findById(req.params.playlist_id, function(err, song) {
-            if (req.body.artist) {
+        Song.findById(req.params.song_id, function(err, song) {
+            console.log(req.body);
+            if (req.body.artist != null) {
                 song.artist = req.body.artist;
             }
-            if (req.body.title) {
+            if (req.body.title != null) {
                 song.title = req.body.title;
             }
-            if (req.body.genre) {
+            if (req.body.genre != null) {
                 song.genre = req.body.genre;
             }
-            if (req.body.url) {
+            if (req.body.url != null) {
                 song.url = req.body.url;
             }
 

@@ -1,4 +1,8 @@
-angular.module('SongDetailCtrl', ['xeditable']).controller('SongDetailController', function($scope, $http, $location, $sce) {
+angular.module('SongDetailCtrl', ['xeditable'])
+.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+})
+.controller('SongDetailController', function($scope, $http, $location, $sce) {
 
 	var idregex = /songs\/([^\/]+)/;
 	var url = $location.url();
@@ -28,7 +32,7 @@ angular.module('SongDetailCtrl', ['xeditable']).controller('SongDetailController
     console.log($scope.url);
     $http({
       url: '/api/songs/' + id,
-      method: 'PUT',
+      method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       data: {
        artist: $scope.artist, 

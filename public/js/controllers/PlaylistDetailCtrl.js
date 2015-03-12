@@ -1,4 +1,8 @@
-angular.module('PlaylistDetailCtrl', ['smart-table', 'xeditable']).controller('PlaylistDetailController', function($scope, $http, $location) {
+angular.module('PlaylistDetailCtrl', ['smart-table', 'xeditable'])
+.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+})
+.controller('PlaylistDetailController', function($scope, $http, $location) {
 	// /playlists/:id
 	var idregex = /playlists\/([^\/]+)/;
 	var url = $location.url();
