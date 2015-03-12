@@ -2,14 +2,6 @@ angular.module('PlaylistCtrl', ['smart-table']).controller('PlaylistController',
   $scope.tagline = 'Here\'s yo mad playlists mon!';
   $scope.createPlaylistTagLine = 'Create a new playlist';
   $scope.playlistAdded = '';
-  
-  $http.get('/api/playlists')
-  .success(function(data) {
-   $scope.playlists = data;
- })
-  .error(function(data) {
-    console.log('Error: ' + data);
-  });
 
   $scope.addplaylist = function() {    
    $http({
@@ -34,14 +26,15 @@ angular.module('PlaylistCtrl', ['smart-table']).controller('PlaylistController',
 
     $http.get('/api/playlists')
     .success(function(data) {
-     $scope.playlists = data;
+     $scope.rowCollection = data;
+     updatePlaylists();
    })
     .error(function(data) {
       console.log('Error: ' + data);
     });
   }
 
-  var updateSongs = function(){
+  var updatePlaylists = function(){
     $http.get('/api/playlists')
     .success(function(data) {
       $scope.rowCollection = data;
@@ -53,8 +46,11 @@ angular.module('PlaylistCtrl', ['smart-table']).controller('PlaylistController',
     $scope.displayedCollection = [].concat($scope.rowCollection);
   };
 
-  updateSongs();
+  updatePlaylists();
 
+  $scope.goToPlaylist = function(row){
+  $location.path( "/playlists/" +row._id);
+};
 
   $scope.removeItem = function removeItem(row) {
     console.log(row);

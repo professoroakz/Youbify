@@ -39,28 +39,10 @@
 
     </form>
 
-
-
-
-
     <div class="jumbotron text-center">
       <h1>List of all playslists</h1>
 
       <p>{{ tagline }}</p>
-<!--
-        <table class='table table-bordered'>
-          <caption>PLAYLISTS</caption>
-          <thead>
-          </thead>
-          <td>Name</td>
-          <td>Genre</td>
-          <td>Mood</td>
-          <tr ng-repeat="x in playlists">
-           <td><a href="/playlists/{{x._id}}">{{x.name}}</a></td>
-           <td>{{x.genre}}</td>
-           <td>{{x.mood}}</td>
-         </tr>
-       </table>  -->
 
        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
         <thead>
@@ -68,16 +50,24 @@
             <th st-sort="name">Name</th>
             <th st-sort="genre">Genre</th>
             <th st-sort="mood">Mood</th>
+            <th>Go to</th>
+            <th>Delete</th>
           </tr>
           <tr>
             <th colspan="5"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="row in displayedCollection" ng-click="go(row)" class="repeat-animation">
+          <tr ng-repeat="row in displayedCollection" class="repeat-animation">
             <td>{{row.name}}</td>
             <td>{{row.genre}}</td>
             <td>{{row.mood}}</td>
+        <td>
+          <button type="button" ng-click="goToPlaylist(row)" class="btn btn-sm btn-success">
+            <i class="glyphicon glyphicon-chevron-right">
+            </i>
+          </button>
+        </td>
             <td>
               <button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
                 <i class="glyphicon glyphicon-remove-circle">
