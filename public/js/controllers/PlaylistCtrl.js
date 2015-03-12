@@ -1,27 +1,28 @@
 angular.module('PlaylistCtrl', ['smart-table']).controller('PlaylistController', function($scope, $http, $location) {
-    $scope.createPlaylistTagLine = 'Create a new playlist';
-    $scope.playlistAdded = '';
-    
-    $http.get('/api/playlists')
-    .success(function(data) {
-       $scope.playlists = data;
-   })
-    .error(function(data) {
-        console.log('Error: ' + data);
-    });
+  $scope.tagline = 'Here\'s yo mad playlists mon!';
+  $scope.createPlaylistTagLine = 'Create a new playlist';
+  $scope.playlistAdded = '';
+  
+  $http.get('/api/playlists')
+  .success(function(data) {
+   $scope.playlists = data;
+ })
+  .error(function(data) {
+    console.log('Error: ' + data);
+  });
 
-    $scope.addplaylist = function() {    
-       $http({
-        url: '/api/playlists',
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        data: {
-            name: $scope.inputPlaylistName, 
-            genre: $scope.inputPlaylistGenre,
-            mood: $scope.inputPlaylistMood, 
-            id: $scope.inputPlaylistID,
-            playlistsongs: [] }
-        });
+  $scope.addplaylist = function() {    
+   $http({
+    url: '/api/playlists',
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    data: {
+      name: $scope.inputPlaylistName, 
+      genre: $scope.inputPlaylistGenre,
+      mood: $scope.inputPlaylistMood, 
+      id: $scope.inputPlaylistID,
+      playlistsongs: [] }
+    });
     /*
     *       Inform user of playlist added and clear the fields
     */
@@ -33,14 +34,14 @@ angular.module('PlaylistCtrl', ['smart-table']).controller('PlaylistController',
 
     $http.get('/api/playlists')
     .success(function(data) {
-       $scope.playlists = data;
+     $scope.playlists = data;
    })
     .error(function(data) {
-        console.log('Error: ' + data);
+      console.log('Error: ' + data);
     });
-}
+  }
 
-      var updateSongs = function(){
+  var updateSongs = function(){
     $http.get('/api/playlists')
     .success(function(data) {
       $scope.rowCollection = data;
@@ -72,7 +73,7 @@ angular.module('PlaylistCtrl', ['smart-table']).controller('PlaylistController',
     });
   }
 
-    $scope.go = function(row){
+  $scope.go = function(row){
     $location.path( "/playlists/" +row._id);
   };
 });

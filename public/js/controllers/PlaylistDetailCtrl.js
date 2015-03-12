@@ -5,18 +5,10 @@ angular.module('PlaylistDetailCtrl', ['smart-table']).controller('PlaylistDetail
 	var idmatch = url.match(idregex);
 	var id = idmatch[1];
 
- /*   $http.get('/api/playlists/'+id)
-                .success(function(data) {
-                        $scope.playlist = data;
-                })
-                .error(function(data) {
-                        console.log('Error: ' + data);
-                }); */
-
-    var updateSongs = function(){
+  var updateSongs = function(){
     $http.get('/api/playlists/'+id)
     .success(function(data) {
-        $scope.tagline = data.name;
+      $scope.tagline = data.name;
       $scope.rowCollection = data.playlistsongs;
     })
     .error(function(data) {

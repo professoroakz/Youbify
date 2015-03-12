@@ -38,6 +38,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         controller: 'ProfileController'
     })
 
+    .when('/videos', {
+        templateUrl: 'views/videos.html',
+        controller: 'SongController'
+    })
+
     .when('/404', {
         templateUrl: 'views/404.html',
         controller: '404Controller'
