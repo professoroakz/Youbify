@@ -178,11 +178,6 @@ var updateSongs = function(){
 
 updateSongs();
 
-$scope.video = true;
-$scope.toggleVideo = function() {
-  $scope.video = $scope.video === false ? true: false;
-};
-
 $scope.removeItem = function removeItem(row) {
   var index = $scope.rowCollection.indexOf(row);
   if (index !== -1) {
@@ -202,14 +197,6 @@ $scope.removeItem = function removeItem(row) {
 $scope.go = function(row){
   $location.path( "/songs/" +row._id);
 };
-
-$scope.play = function(row){
-  console.log(row);
-  var index = $scope.rowCollection.indexOf(row);
-  console.log(index);
-  $scope.rowCollection[index].video = "asd";
-  console.log($scope.rowCollection[index].video);
-};
 })
 
 // Filter to get all the URL's working, through SCE.
@@ -220,7 +207,6 @@ $scope.play = function(row){
     var id = idmatch[2];
 
     url = "https://www.youtube.com/embed/" + id;
-    console.log(url);
     return $sce.trustAsResourceUrl(url);
   };
 });
