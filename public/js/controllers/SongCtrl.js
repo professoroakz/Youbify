@@ -1,5 +1,5 @@
-angular.module('SongCtrl', ['ui.bootstrap', 'smart-table', 'ngAnimate']).controller('SongController', function(Song, $scope, $http, $sce, $location) {
-
+angular.module('SongCtrl', ['ui.bootstrap', 'smart-table', 'ngAnimate', 'oblador.lazytube'])
+.controller('SongController', function(Song, $scope, $http, $sce, $location) {
 	$scope.tagline = 'List of songs';
 	$scope.addSongHeader = 'Add new songs';
 	$scope.addSongTagline = 'Add a new song to your library.';
@@ -78,7 +78,7 @@ angular.module('SongCtrl', ['ui.bootstrap', 'smart-table', 'ngAnimate']).control
 	$scope.inputGenre = "";
 	$scope.inputYoutubeUrl = "";
   updateSongs();
-}
+};
 
 
 $scope.chooseSongToPlaylist = function (term) {
@@ -130,87 +130,88 @@ $scope.chooseSongToPlaylist = function (term) {
    console.log("Playlistsongs: " + $scope.playlistsongs);
    $scope.addSongToPlaylistVisible = false;
    $scope.chooseSongToPlaylistVisible = true;
- });
+ })
+};
 
-    //    console.log("Song ID: " + $scope.songID);
-    //    console.log("Playlistsongs index 0: " + $scope.playlistsongs[0]);
-  }
+$scope.addSongToPlaylist = function() {
 
-  $scope.addSongToPlaylist = function() {
-
-    $http({
-      url: '/api/playlists/' + $scope.playlistID,
-      method: 'PATCH',
-      data: {
-        playlistsongs : $scope.playlistsongs
-      }
-    });
-
-    $scope.songToPlaylistAdded = "Song added to playlist!";
-    $scope.addSongToPlaylistVisible = true;
-    $scope.addNewSongToPlaylistVisible = false;
-
-  }
-
-  $scope.addNewSongToPlaylist = function() {
-
-    $scope.playlistURL = '/api/playlists:';
-    $scope.songID = '';
-    $scope.playlistID = '';
-    $scope.playlistsongs.length = 0;
-    $scope.songToPlaylistAdded = '';
-    $scope.chooseSongToPlaylistVisible = false;
-    $scope.addNewSongToPlaylistVisible = true;
-    $scope.songToPlaylistAdded = '';
-    $scope.inputPlaylistTypeahead = '';
-    $scope.inputTitleTypeahead = '';
-  }
-
-  var updateSongs = function(){
-    $http.get('/api/songs')
-    .success(function(data) {
-      $scope.rowCollection = data;
-    })
-    .error(function(data) {
-      console.log('Error: ' + data);
-    });
-
-    $scope.displayedCollection = [].concat($scope.rowCollection);
-  };
-
-  updateSongs();
-
-
-  $scope.removeItem = function removeItem(row) {
-    var index = $scope.rowCollection.indexOf(row);
-    if (index !== -1) {
-      $scope.rowCollection.splice(index, 1);
+  $http({
+    url: '/api/playlists/' + $scope.playlistID,
+    method: 'PATCH',
+    data: {
+      playlistsongs : $scope.playlistsongs
     }
+  });
 
-    $http.delete('/api/songs/' + row._id)
-    .success(function(data) {
-      console.log("succesfully deleted" + row._id)
+  $scope.songToPlaylistAdded = "Song added to playlist!";
+  $scope.addSongToPlaylistVisible = true;
+  $scope.addNewSongToPlaylistVisible = false;
 
-    })
-    .error(function(data) {
-      console.log('Error: ' + data);
-    });
+};
+
+$scope.addNewSongToPlaylist = function() {
+
+  $scope.playlistURL = '/api/playlists:';
+  $scope.songID = '';
+  $scope.playlistID = '';
+  $scope.playlistsongs.length = 0;
+  $scope.songToPlaylistAdded = '';
+  $scope.chooseSongToPlaylistVisible = false;
+  $scope.addNewSongToPlaylistVisible = true;
+  $scope.songToPlaylistAdded = '';
+  $scope.inputPlaylistTypeahead = '';
+  $scope.inputTitleTypeahead = '';
+};
+
+var updateSongs = function(){
+  $http.get('/api/songs')
+  .success(function(data) {
+    $scope.rowCollection = data;
+  })
+  .error(function(data) {
+    console.log('Error: ' + data);
+  });
+
+  $scope.displayedCollection = [].concat($scope.rowCollection);
+};
+
+updateSongs();
+
+$scope.video = true;
+$scope.toggleVideo = function() {
+  $scope.video = $scope.video === false ? true: false;
+};
+
+$scope.removeItem = function removeItem(row) {
+  var index = $scope.rowCollection.indexOf(row);
+  if (index !== -1) {
+    $scope.rowCollection.splice(index, 1);
   }
 
-  $scope.go = function(row){
-    $location.path( "/songs/" +row._id);
-  };
+  $http.delete('/api/songs/' + row._id)
+  .success(function(data) {
+    console.log("succesfully deleted" + row._id)
 
-  $scope.play = function(row){
-    console.log(row);
-    var index = $scope.rowCollection.indexOf(row);
-    console.log(index);
-    $scope.rowCollection[index].video = "asd";
-    console.log($scope.rowCollection[index].video);
-  };
+  })
+  .error(function(data) {
+    console.log('Error: ' + data);
+  });
+};
+
+$scope.go = function(row){
+  $location.path( "/songs/" +row._id);
+};
+
+$scope.play = function(row){
+  console.log(row);
+  var index = $scope.rowCollection.indexOf(row);
+  console.log(index);
+  $scope.rowCollection[index].video = "asd";
+  console.log($scope.rowCollection[index].video);
+};
 })
-// Filter to get all the URL's working, through SCE.
 
+// Filter to get all the URL's working, through SCE.
 .filter('trustUrl', function ($sce) {
   return function(url) {
     var reg = /(watch\?v=|embed\/)([^\/]+)/;

@@ -5,6 +5,5 @@
 	<p> {{song.artist}} </p>
 	<h2> Genre </h2>
 	<p> {{song.genre}} </p>
-	<iframe width="640" height="360" src={{song.url | trustUrl}} frameborder="0" allowfullscreen> </iframe>
-</div>
+    <iframe ob-lazytube width="480" height="360" src="{{song.url | trustUrl}}" frameborder="0" allowfullscreen></iframe>
 </div>
