@@ -5,6 +5,7 @@ angular.module('SongCtrl', ['ui.bootstrap', 'smart-table', 'ngAnimate', 'oblador
 	$scope.addSongTagline = 'Add a new song to your library.';
 	$scope.songToPlaylist = "Add song to playlist"
 	$scope.whatPlaylist = 'Do you want to add a song to a playlist?';
+  $scope.yourLibrary = 'Library';
 	$scope.songAdded = '';
 	$scope.songCollection = [];
   $scope.playlistURL = '/api/playlists:';
