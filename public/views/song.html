@@ -103,6 +103,7 @@
 				<th st-sort="title">Title</th>
 				<th st-sort="genre">Genre</th>
 				<th>Video</th>
+				<th>Go to</th>
 				<th>Delete</th>
 			</tr>
 			<tr>
@@ -110,11 +111,17 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="row in displayedCollection" ng-click="go(row)" class="repeat-animation">
+			<tr ng-repeat="row in displayedCollection" class="repeat-animation">
 				<td>{{row.artist}}</td>
 				<td>{{row.title}}</td>
 				<td>{{row.genre}}</td>
-				<td><iframe ob-lazytube width="420" height="35" src="{{row.url | trustUrl}}" frameborder="0" allowfullscreen></iframe></td>
+				<td><iframe ob-lazytube width="420" height="170" src="{{row.url | trustUrl}}" frameborder="0" allowfullscreen></iframe></td>
+				<td>
+					<button type="button" ng-click="go(row)" class="btn btn-sm btn-success">
+						<i class="glyphicon glyphicon-chevron-right">
+						</i>
+					</button>
+				</td>
 				<td>
 					<button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
 						<i class="glyphicon glyphicon-remove-circle">
