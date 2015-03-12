@@ -6,7 +6,6 @@ angular.module('SongCtrl', ['ui.bootstrap', 'smart-table', 'ngAnimate', 'oblador
 	$scope.songToPlaylist = "Add song to playlist"
 	$scope.whatPlaylist = 'Do you want to add a song to a playlist?';
   $scope.yourLibrary = 'Library';
-  $scope.editSong = 'Edit a song';
 	$scope.songAdded = '';
 	$scope.songCollection = [];
   $scope.playlistURL = '/api/playlists:';
@@ -18,15 +17,6 @@ angular.module('SongCtrl', ['ui.bootstrap', 'smart-table', 'ngAnimate', 'oblador
   $scope.chooseSongToPlaylistVisible = false;
   $scope.addSongToPlaylistVisible = true;
   $scope.addNewSongToPlaylistVisible = true;
-
-  $http.get('/api/songs')
-  .success(function(data) {
-    $scope.songs = data;
-
-  })
-  .error(function(data) {
-    console.log('Error: ' + data);
-  });
 
   $scope.searchSong = function (term) {
     return $http({
