@@ -24,15 +24,8 @@ angular.module('PlaylistCtrl', ['smart-table']).controller('PlaylistController',
     $scope.inputPlaylistGenre = "";
     $scope.inputPlaylistMood = "";
 
-    $http.get('/api/playlists')
-    .success(function(data) {
-     $scope.rowCollection = data;
-     updatePlaylists();
-   })
-    .error(function(data) {
-      console.log('Error: ' + data);
-    });
-  }
+    updatePlaylists();
+  };
 
   var updatePlaylists = function(){
     $http.get('/api/playlists')

@@ -131,7 +131,8 @@ $scope.addSongToPlaylist = function() {
       playlistsongs : $scope.playlistsongs
     }
   });
-
+  
+  updateSongs();
   $scope.songToPlaylistAdded = "Song added to playlist!";
   $scope.addSongToPlaylistVisible = true;
   $scope.addNewSongToPlaylistVisible = false;
