@@ -1,4 +1,4 @@
-angular.module('SongCtrl', ['ui.bootstrap', 'smart-table', 'ngAnimate', 'oblador.lazytube'])
+8angular.module('SongCtrl', ['ui.bootstrap', 'smart-table', 'ngAnimate', 'oblador.lazytube'])
 .controller('SongController', function(Song, $scope, $http, $sce, $location) {
 	$scope.tagline = 'List of songs';
 	$scope.addSongHeader = 'Add new songs';
@@ -113,15 +113,10 @@ $scope.chooseSongToPlaylist = function (term) {
             break
           }
         }
-     //       console.log("Playlist: " + playlistID[0]);//as expected
+        
      $scope.playlistURL += $scope.playlistID;
      $scope.playlistsongs.push($scope.songID.toString());
-   //     	console.log(playlistURL);
 
-   console.log("URL for playlist: " + $scope.playlistURL);
-   console.log("PlaylistID: " + $scope.playlistID);
-   console.log("Song ID: " + $scope.songID);
-   console.log("Playlistsongs: " + $scope.playlistsongs);
    $scope.addSongToPlaylistVisible = false;
    $scope.chooseSongToPlaylistVisible = true;
  })
