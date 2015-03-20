@@ -1,4 +1,4 @@
-8angular.module('SongCtrl', ['ui.bootstrap', 'smart-table', 'ngAnimate', 'oblador.lazytube'])
+angular.module('SongCtrl', ['ui.bootstrap', 'smart-table', 'ngAnimate', 'oblador.lazytube'])
 .controller('SongController', function(Song, $scope, $http, $sce, $location) {
 	$scope.tagline = 'List of songs';
 	$scope.addSongHeader = 'Add new songs';
